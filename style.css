@@ -797,3 +797,65 @@ body {
 #project-demo .full-content-column {
     overflow-y: hidden;
 }
+
+/* ========================================= */
+/* 9. MOBILE OPTIMIZATION (Screens < 768px)  */
+/* ========================================= */
+
+@media (max-width: 768px) {
+    
+    /* 1. Shrink the massive typography */
+    .massive-text { font-size: 2.5rem; }
+    .character-name { font-size: 2rem; }
+    .project-title { font-size: 1.8rem; margin-top: 40px; }
+    .artist-statement { font-size: 1rem; }
+
+    /* 2. Tighten up the main menu and text boxes */
+    .dialogue-box { padding: 30px 20px; }
+    .options-menu.icon-grid { grid-template-columns: 1fr; } /* Stacks buttons vertically */
+    .social-footer { flex-direction: column; gap: 15px; }
+    .social-divider { display: none; } /* Hides the // on mobile */
+
+    /* 3. Fix the Layout Overlays (Single Column mode) */
+    .full-content-column,
+    .right-content-column {
+        width: 100vw;
+        padding: 80px 5vw 100px 5vw; /* Reduces massive side padding */
+    }
+
+    /* Hide the floating left-side desktop posters to save screen space */
+    .hero-poster-anim { display: none !important; }
+
+    /* 4. Playable Media: Stack the image on top of the text */
+    .game-entry {
+        grid-template-columns: 1fr; 
+        gap: 15px;
+    }
+    .game-screenshot { height: auto; aspect-ratio: 16/9; }
+
+    /* 5. Performance Page: Stack the photo collage */
+    .project-collage {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        aspect-ratio: auto;
+        gap: 10px;
+    }
+    .collage-left, .collage-top-right, .collage-bottom-right {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        aspect-ratio: 16/9; /* Forces all collage images to be uniform rectangles */
+    }
+
+    /* 6. Carousel Tweaks */
+    .carousel-caption { padding: 10px; font-size: 0.75rem; }
+    .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+    .left-btn { left: 10px; }
+    .right-btn { right: 10px; }
+
+    /* 7. Close Button: Shrink to icon only */
+    .close-page-btn {
+        top: 20px;
+        padding: 10px 12px;
+    }
+    .close-page-btn .close-text { display: none !important; }
+}
