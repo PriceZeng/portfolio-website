@@ -1,0 +1,799 @@
+/* =========================================
+   TABLE OF CONTENTS
+   1. Base Setup & Variables
+   2. Global Animations & Overlays
+   3. Typography & Core Layout
+   4. Persistent Logo Setup
+   5. Main Scroll Pages (Title, Statement, Menu)
+   6. Social Footer Styling
+   7. Project Overlays (Base Layout & Buttons)
+   8. Project Specifics (Performance, Games, Photography)
+========================================= */
+
+
+/* ========================================= */
+/* 1. BASE SETUP & VARIABLES                 */
+/* ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow: hidden; /* Prevents manual scrolling, forced via JS */
+}
+
+
+/* ========================================= */
+/* 2. GLOBAL ANIMATIONS & OVERLAYS           */
+/* ========================================= */
+
+/* --- Initial Loading Screen --- */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 0.8s ease-in-out 1s forwards;
+    pointer-events: none;
+}
+
+.loader-text {
+    font-size: 1.2rem;
+    letter-spacing: 6px;
+    font-weight: 300;
+    animation: pulse 1s infinite alternate;
+}
+
+/* --- Camera Shutter Transition --- */
+.shutter {
+    position: fixed;
+    top: 100vh; /* Starts hidden perfectly below the screen */
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    z-index: 9000; /* Sits above everything except the initial loading screen */
+    
+    /* Cinematic easing curve snaps fast, then settles smoothly */
+    transition: top 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.shutter.close {
+    top: 0; /* Shutter covers the screen */
+}
+
+.shutter.open {
+    top: -100vh; /* Shutter moves up and completely off-screen */
+}
+
+/* --- Keyframes --- */
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+
+/* ========================================= */
+/* 3. TYPOGRAPHY & CORE LAYOUT               */
+/* ========================================= */
+
+/* Container that holds all 3 vertical pages */
+.scroll-wrapper {
+    width: 100vw;
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.fullscreen-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.title-container {
+    text-align: center;
+    margin-top: 15vh; 
+}
+
+.character-name {
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+}
+
+.massive-text {
+    font-size: 4.5rem;
+}
+
+.character-role {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #666666;
+}
+
+
+/* ========================================= */
+/* 4. PERSISTENT LOGO SETUP                  */
+/* ========================================= */
+
+/* Large starting state */
+.persistent-logo {
+    position: fixed;
+    top: 36vh;
+    left: 49.5%;
+    transform: translate(calc(-50% - 10px), -50%); 
+    width: 130px; 
+    z-index: 1500;
+    pointer-events: none; 
+    filter: invert(1);
+    
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out 1.2s forwards; 
+    
+    transition: top 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+                left 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+                transform 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+                width 1.2s cubic-bezier(0.77, 0, 0.175, 1),
+                opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Shrunken header state (Triggered by JavaScript) */
+.persistent-logo.watermark {
+    top: 40px; 
+    left: 49.5%; 
+    transform: translateX(-50%); 
+    width: 80px; 
+    opacity: 1; 
+    animation: none; 
+}
+
+
+/* ========================================= */
+/* 5. MAIN SCROLL PAGES (Statement & Menu)   */
+/* ========================================= */
+
+/* --- Statement Text Box Layout --- */
+.dialogue-box {
+    background: #ffffff;
+    padding: 60px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.text-content {
+    line-height: 1.6;
+}
+
+#statement-container {
+    max-width: 720px;
+    margin: 0 auto; 
+}
+
+.artist-statement {
+    font-size: 1.15rem;
+    line-height: 1.85; 
+    font-weight: 400;
+    margin-bottom: 35px;
+    color: #333333; 
+}
+
+#statement-container .artist-statement {
+    margin-bottom: 24px; 
+}
+
+/* Pull-quote styling for the first statement paragraph */
+#statement-container .artist-statement:first-child {
+    font-size: 1.45rem;
+    line-height: 1.5;
+    font-weight: 300;
+    text-align: center; 
+    margin-bottom: 45px;
+    padding-bottom: 35px;
+    border-bottom: 1px solid #e0e0e0; 
+    color: #000000;
+}
+
+/* --- Word-by-Word Reveal Animation (Legacy) --- */
+.word-reveal {
+    opacity: 0;
+    display: inline-block;
+    white-space: pre; 
+    transform: translateY(8px);
+    animation: wordFadeUp 0.4s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes wordFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Action Button (Learn More) --- */
+#next-button {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 10.5s; 
+}
+
+.action-button-centered {
+    display: block;
+    margin: 50px auto 0 auto; 
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
+    padding: 15px 30px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    box-shadow: none;
+    text-decoration: none;
+}
+
+.action-button-centered:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: none; 
+    box-shadow: none;
+}
+
+/* --- Dashboard Menu System --- */
+.prompt-text {
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.options-menu.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 5px;
+    justify-content: center;
+}
+
+.game-option.grid-item {
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px; 
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.game-option.grid-item svg {
+    width: 42px;
+    height: 42px;
+    stroke-width: 1.5px;
+    transition: all 0.2s ease;
+}
+
+.game-option.grid-item:hover {
+    background: #000000;
+    color: #ffffff;
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+}
+
+.game-option.grid-item:hover svg {
+    stroke: #ffffff;
+}
+
+
+/* ========================================= */
+/* 6. SOCIAL FOOTER STYLING                  */
+/* ========================================= */
+
+.social-footer {
+    margin-top: 60px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.social-link {
+    color: #000000;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center; 
+    gap: 8px; 
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease; 
+}
+
+.social-link:hover {
+    opacity: 0.4; 
+}
+
+/* Triggers when user clicks 'Contact' to copy email */
+.social-link.copied-flash {
+    background-color: #000000;
+    color: #ffffff; 
+    opacity: 1; 
+}
+
+.social-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.social-divider {
+    margin: 0 15px;
+    color: #999999; 
+}
+
+
+/* ========================================= */
+/* 7. PROJECT OVERLAYS (Base Layouts)        */
+/* ========================================= */
+
+/* --- The Overlay Container --- */
+.project-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    z-index: 2000; 
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease;
+    overflow: hidden; 
+}
+
+.project-page.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Hero Poster (Left side anchor) --- */
+.hero-poster-anim {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Start centered and scaled down slightly */
+    transform: translate(-50%, -50%) scale(0.85); 
+    max-height: 92vh; 
+    max-width: 44vw; 
+    width: auto;
+    height: auto;
+    box-shadow: 16px 16px 0px #00000042;
+    border: 2px solid #000000;
+    opacity: 0;
+    transition: all 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 10;
+}
+
+.project-page.active .hero-poster-anim {
+    opacity: 1;
+}
+
+.project-page.stage-2 .hero-poster-anim {
+    left: 25vw; 
+    /* Glides to the left while scaling up to full size perfectly */
+    transform: translate(-50%, -50%) scale(1); 
+}
+
+/* --- Two-Column Setup --- */
+.right-content-column {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50vw; 
+    height: 100vh;
+    padding: 4vh 5vw 100px 4vw; 
+    overflow-y: auto; 
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 1s cubic-bezier(0.77, 0, 0.175, 1) 0.2s; 
+}
+
+.project-page.stage-2 .right-content-column {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.right-content-column .project-title,
+.right-content-column .project-meta,
+.right-content-column .text-content {
+    max-width: 700px; 
+}
+
+/* --- Single-Column Setup --- */
+.full-content-column {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh;
+    padding: 3vh 10vw 100px 10vw; 
+    overflow-y: auto; 
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(40px); 
+    transition: all 1s cubic-bezier(0.77, 0, 0.175, 1) 0.2s; 
+}
+
+.project-page.stage-2 .full-content-column {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.full-content-column .project-title,
+.full-content-column .project-meta,
+.full-content-column .playable-games-list {
+    max-width: 1200px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Inner Project Details --- */
+.project-title {
+    font-size: 3rem; 
+    line-height: 1;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.project-meta {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #000000; 
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 12px;
+}
+
+.meta-row:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Close Button --- */
+.close-page-btn {
+    position: fixed;
+    top: 60px;
+    right: 0; 
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    border-right: none; 
+    padding: 16px 18px; 
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    cursor: pointer;
+    z-index: 2010;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.project-page.stage-2 .close-page-btn {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(calc(100% - 56px)); 
+    transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.project-page.stage-2 .close-page-btn:hover {
+    background: #000000;
+    color: #ffffff;
+    transform: translate(-8px, -4px); 
+    box-shadow: 8px 8px 0px #00000042;
+    transition: all 0.2s ease;
+}
+
+.return-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: transform 0.4s ease;
+}
+
+.project-page.stage-2 .close-page-btn:hover .return-icon {
+    transform: rotate(90deg); 
+}
+
+.close-text {
+    max-width: 0; 
+    overflow: hidden; 
+    opacity: 0;
+    white-space: nowrap; 
+    margin-left: 0; 
+    transition: all 0.3s ease; 
+}
+
+.project-page.stage-2 .close-page-btn:hover .close-text {
+    max-width: 100px; 
+    opacity: 1;
+    margin-left: 12px; 
+}
+
+
+/* ========================================= */
+/* 8. PROJECT SPECIFICS                      */
+/* ========================================= */
+
+/* --- Interactive Performance Collage --- */
+.project-collage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr; 
+    gap: 16px;
+    margin: 50px 0;
+    aspect-ratio: 16 / 9; 
+}
+
+.collage-left { grid-column: 1 / 2; grid-row: 1 / 3; }
+.collage-top-right { grid-column: 2 / 3; grid-row: 1 / 2; }
+.collage-bottom-right { grid-column: 2 / 3; grid-row: 2 / 3; }
+
+.collage-item {
+    position: relative;
+    border: 2px solid #000000;
+    box-shadow: 6px 6px 0px #00000042;
+    overflow: hidden;
+    background: #000000; 
+}
+
+.collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+    transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.hover-caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85); 
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; 
+}
+
+.collage-item:hover img {
+    transform: scale(1.05); 
+    opacity: 0.4; 
+}
+
+.collage-item:hover .hover-caption {
+    opacity: 1; 
+}
+
+/* --- Video Embeds --- */
+.video-container {
+    width: 100%;
+    border: 2px solid #000000;
+    box-shadow: 8px 8px 0px #00000042;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    aspect-ratio: 16 / 9; 
+    background: #000000;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Make the Demo Reel video full-screen edge-to-edge */
+#project-demo .full-content-column {
+    padding: 0; /* Removes the side padding so the video can touch the edges */
+    background: #000000; /* Adds a cinematic black background behind the player */
+}
+
+#project-demo .video-container {
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border: none;       /* Removes the 2px black stroke */
+    box-shadow: none;   /* Removes the drop shadow */
+    aspect-ratio: auto; /* Removes the 16/9 lock so it fills any screen size */
+}
+
+/* --- Playable Media List --- */
+.game-entry {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; 
+    gap: 30px; 
+    margin-top: 25px;
+    align-items: start;
+}
+
+.game-screenshot {
+    width: 100%;
+    height: 30vh; 
+    object-fit: cover;
+    object-position: top; 
+    border: 2px solid #000000;
+    box-shadow: 8px 8px 0px #00000042;
+}
+
+.game-title {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.inline-button {
+    margin: 16px 0 0 0;
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 12px 20px;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* --- Photography Carousel --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    
+    /* 1. CONTROL THE OVERALL SIZE */
+    max-width: 1000px; /* Lowers the maximum width so it doesn't stretch too far on huge monitors */
+    margin: 40px auto 0 auto; /* The 'auto' left and right margins keep it perfectly centered */
+    
+    /* 2. CONTROL THE SHAPE */
+    aspect-ratio: 4 / 3; /* Try 3 / 2 for classic 35mm photography shape, or 4 / 3 */
+    
+    /* 3. PROTECT LAPTOP USERS */
+    max-height: 70vh; /* Prevents the box from getting so tall that it pushes off the bottom of the screen */
+    
+    background: #000000;
+    border: 2px solid #000000;
+    box-shadow: 8px 8px 0px #00000042;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none; 
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25); 
+    color: #ffffff;
+    padding: 8px 20px; 
+    font-size: 0.8rem; 
+    line-height: 1.4;
+    border-top: 1px solid #333333;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    color: #000000;
+    border: 2px solid #000000;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+.left-btn { left: 20px; }
+.right-btn { right: 20px; }
+
+/* Lock the scrollbar ONLY for specific modals */
+#project-playable .full-content-column,
+#project-demo .full-content-column {
+    overflow-y: hidden;
+}

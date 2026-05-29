@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lingchen Zeng | Digital Artist</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========================================= -->
+    <!-- GLOBAL OVERLAYS (Loaders, Transitions, Logos) -->
+    <!-- ========================================= -->
+
+    <!-- 1. Initial Black Loading Screen -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-text">INITIALIZING</div>
+    </div>
+
+    <!-- 2. Cinematic Black Shutter for Page Transitions -->
+    <div id="camera-shutter" class="shutter"></div>
+
+    <!-- 3. The Persistent Logo (Starts large, shrinks to top-center) -->
+    <img src="images/logo.png" id="main-logo" class="persistent-logo" alt="Lingchen Zeng Logo">
+
+
+    <!-- ========================================= -->
+    <!-- MAIN SCROLLING WEBSITE -->
+    <!-- ========================================= -->
+    <div class="scroll-wrapper" id="master-scroll">
+
+        <!-- PAGE 1: Hero Landing (Name & Title) -->
+        <section class="fullscreen-page">
+            <div class="title-container">
+                <h1 class="character-name massive-text">Lingchen Zeng</h1>
+                <h2 class="character-role">Digital Artist</h2>
+            </div>
+        </section>
+
+        <!-- PAGE 2: The Artist Statement & Keyword Shuffle -->
+        <section class="fullscreen-page">
+            <div class="dialogue-box" style="border: none; box-shadow: none; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 50vh;">
+                
+                <!-- Phase 1: The Shuffling Keyword (Handled in JS) -->
+                <h1 id="keyword-shuffle" class="character-name massive-text" style="margin: 0; opacity: 1;"></h1>
+
+                <!-- Phase 2: The Refined Statement -->
+                <div id="statement-content" style="display: none; opacity: 0; transition: opacity 1.5s ease; max-width: 800px;">
+                    <p class="artist-statement" style="font-size: 1.45rem; line-height: 1.6; font-weight: 300; margin-bottom: 30px;">
+                        My purpose is not to fabricate alternatives, but to document the world exactly as it exists. 
+                    </p>
+                    <p class="artist-statement" style="font-size: 1.45rem; line-height: 1.6; font-weight: 300; margin-bottom: 30px;">
+                        Through narrative simulations and unfiltered photography, I remove the distance between the observer and the overlooked. My work is not a surrender to the reality but a direct confrontation with the present.
+                    </p>
+                    <p class="artist-statement" style="font-size: 1.45rem; line-height: 1.6; font-weight: 300; margin-bottom: 30px;">
+                        I capture the absolute tension between structural order and raw chaos, preserving a grounded, uncompromising reflection of the human experience.
+                    </p>
+                </div>
+                
+                <!-- Phase 3: The Transition Button -->
+                <button class="action-button-centered" id="next-button" style="visibility: hidden; opacity: 0; transition: opacity 1s ease; margin-top: 50px;">Learn More >></button>
+
+            </div>
+        </section>
+
+        <!-- PAGE 3: The Main Dashboard Menu & Footer -->
+        <section class="fullscreen-page">
+            <div class="dialogue-box" style="text-align: center; border: none;">
+                
+                <!-- Dashboard Prompt -->
+                <p class="prompt-text" style="font-size: 1.2rem; margin-bottom: 40px; letter-spacing: 4px;">SELECT A BELOW TOPIC ABOUT ZENG</p>
+                
+                <!-- Interactive Grid Menu -->
+                <div class="options-menu icon-grid">
+                    
+                    <button class="game-option grid-item" id="btn-playable">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                            <path d="M6 12h4"></path><path d="M8 10v4"></path>
+                            <circle cx="15" cy="13" r="1"></circle><circle cx="18" cy="11" r="1"></circle>
+                        </svg>
+                        <span>Playable Media</span>
+                    </button>
+
+                    <button class="game-option grid-item" id="btn-photography">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
+                            <circle cx="12" cy="13" r="3"></circle>
+                        </svg>
+                        <span>Photography Showcase</span>
+                    </button>
+
+                    <button class="game-option grid-item" id="btn-performance">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.3 1.5 1.5 2.5"></path>
+                            <path d="M9 18h6"></path><path d="M10 22h4"></path>
+                        </svg>
+                        <span>Interactive Performance</span>
+                    </button>
+
+                    <button class="game-option grid-item" id="btn-tabletop">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <circle cx="15.5" cy="15.5" r="1.5"></circle>
+                        </svg>
+                        <span>Tabletop Systems</span>
+                    </button>
+
+                    <button class="game-option grid-item" id="btn-rigging">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                        <span>3D Rigging & Creations</span>
+                    </button>
+
+                    <button class="game-option grid-item" id="btn-demo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                            <line x1="7" y1="2" x2="7" y2="22"></line>
+                            <line x1="17" y1="2" x2="17" y2="22"></line>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <line x1="2" y1="7" x2="7" y2="7"></line>
+                            <line x1="2" y1="17" x2="7" y2="17"></line>
+                            <line x1="17" y1="17" x2="22" y2="17"></line>
+                            <line x1="17" y1="7" x2="22" y2="7"></line>
+                        </svg>
+                        <span>Demo Reel</span>
+                    </button>
+
+                </div>
+
+                <!-- Social & Contact Footer -->
+                <div class="social-footer">
+                    
+                    <!-- Bilibili -->
+                    <a href="https://space.bilibili.com/21024330" target="_blank" class="social-link">
+                        <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.766-1.004.996-2.262 1.522-3.773 1.577H5.333c-1.51-.055-2.769-.581-3.773-1.577C.556 20.118.036 18.859 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.905l.027-.026c.262-.24.567-.36.914-.36.346 0 .651.12.914.36l2.84 2.736h4.747l2.84-2.736c.262-.24.567-.36.914-.36.346 0 .651.12.914.36l.027.026c.248.247.373.55.373.905 0 .355-.125.657-.373.906l-1.174 1.12zM5.333 7.24c-.741.01-1.367.271-1.874.784-.506.513-.767 1.141-.784 1.884v7.36c.017.741.278 1.366.784 1.884.507.518 1.133.78 1.874.79h13.334c.741-.01 1.366-.272 1.873-.79.508-.518.768-1.143.785-1.884v-7.36c-.017-.743-.277-1.371-.785-1.884-.507-.513-1.132-.774-1.873-.784H5.333zm3.913 3.444c.606 0 1.125.21 1.554.634.428.421.643.945.643 1.573 0 .625-.215 1.147-.643 1.568-.429.421-.948.634-1.554.634-.606 0-1.125-.213-1.554-.634-.428-.421-.642-.943-.642-1.568 0-.628.214-1.152.642-1.573.429-.424.948-.634 1.554-.634zm5.507 0c.606 0 1.125.21 1.554.634.428.421.643.945.643 1.573 0 .625-.215 1.147-.643 1.568-.429.421-.948.634-1.554.634-.606 0-1.125-.213-1.554-.634-.428-.421-.642-.943-.642-1.568 0-.628.214-1.152.642-1.573.429-.424.948-.634 1.554-.634z"/>
+                        </svg>
+                        BILIBILI
+                    </a>
+                    
+                    <span class="social-divider">//</span>
+                    
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com/@lingchenzeng5745" target="_blank" class="social-link">
+                        <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                        YOUTUBE
+                    </a>
+                    
+                    <span class="social-divider">//</span>
+                    
+                    <!-- Contact (Copy to Clipboard JS Target) -->
+                    <a href="#" id="contact-copy-btn" class="social-link">
+                        <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        <span id="contact-text">CONTACT</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- PROJECT OVERLAYS (Hidden until clicked) -->
+    <!-- ========================================= -->
+
+    <!-- OVERLAY 1: Interactive Performance -->
+    <div class="project-page" id="project-performance">
+        <button class="close-page-btn" id="close-performance-btn"><span class="return-icon">✕</span><span class="close-text">CLOSE</span></button>
+    
+        <img src="images/grid-poster.png" alt="Promotional poster for The Control of the Grid" class="hero-poster-anim">
+        
+        <div class="right-content-column">
+            <h2 class="project-title" style="margin-top: 0;">The Control of the Grid</h2>
+            
+            <div class="project-meta">
+                <div class="meta-row">
+                    <span><strong>YEAR:</strong> 2026</span>
+                    <span><strong>MEDIUM:</strong> Live Interactive Game/Performance</span>
+                </div>
+                <div class="meta-row">
+                    <span><strong>ROLE:</strong> Lighting Programmer, Documentation</span>
+                </div>
+            </div>
+            
+            <div class="text-content">
+                <p>
+                    The Control of the Grid is an interactive, experimental experience where both actors and audiences actively engage in establishing a scripted narrative. The play relies heavily on the precise execution of a carefully designed lighting sequence to guide and trigger the progression of events.
+                </p>
+                <p>
+                    Throughout the show, audiences experience the thematic conflict between Chaos and Order through a series of games and performances. The restrictive enforcement of order—represented by the "grid"—is constantly challenged by the restless nature of chaos.
+                </p>
+                <p>
+                    It was my first time actively participating in a live show as part of the creative crew, as well as my first time programming and operating all the lighting on set. Consequently, it was also the first time my own creative decisions and limitations directly influenced a play's dramatic tone.
+                </p>
+            </div>
+
+            <!-- Image Collage -->
+            <div class="project-collage">
+                <figure class="collage-item collage-left">
+                    <img src="images/lighting-station2.jpg" alt="Vertical view of lighting station">
+                    <div class="hover-caption">Backstage Team</div>
+                </figure>
+                <figure class="collage-item collage-top-right">
+                    <img src="images/stage-lighting.jpg" alt="Stage lighting design">
+                    <div class="hover-caption">Lighting Design Session</div>
+                </figure>
+                <figure class="collage-item collage-bottom-right">
+                    <img src="images/lighting-station.jpg" alt="Lighting control station">
+                    <div class="hover-caption">Lighting Control Station</div>
+                </figure>
+            </div>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/3VhYgUKr9yk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERLAY 2: Playable Media -->
+    <div class="project-page" id="project-playable">
+        <button class="close-page-btn" id="close-playable-btn"><span class="return-icon">✕</span><span class="close-text">CLOSE</span></button>
+        
+        <div class="full-content-column">
+            <h2 class="project-title massive-text" style="margin-top: 0;">Playable Media</h2>
+            
+            <div class="project-meta">
+                <div class="meta-row">
+                    <span><strong>ENGINE:</strong> Bitsy 3D & 2D</span>
+                    <span><strong>FOCUS:</strong> Narrative Simulation & Atmosphere</span>
+                </div>
+            </div>
+            
+            <div class="text-content playable-games-list">
+                
+                <!-- Game 1 -->
+                <div class="game-entry">
+                    <img src="images/this-land-screenshot.png" alt="This Land Is Your Land Screenshot" class="game-screenshot">
+                    <div class="game-details">
+                        <h3 class="game-title">This Land Is Your Land (2026)</h3>
+                        <p>An atmospheric 3D narrative game set against the bleak backdrop of the Great Depression, exploring themes of survival and critiquing American capitalism. Developed by importing an original 2D Bitsy game and adjusting tile settings to construct a three-dimensional world.</p>
+                        <a href="https://drive.google.com/file/d/1TvgC95Pcp5paoA4FzCV2V-HEtR2gMlzW/view?usp=sharing" target="_blank" class="action-button-centered inline-button">Play Game >></a>
+                    </div>
+                </div>
+
+                <!-- Game 2 -->
+                <div class="game-entry">
+                    <img src="images/winter-car-screenshot.png" alt="My Winter Car Screenshot" class="game-screenshot">
+                    <div class="game-details">
+                        <h3 class="game-title">My Winter Car / Remix (2025)</h3>
+                        <p>A two-part project reimagining the Amistech game My Summer Car. It includes "Cursed Car," a horror spin-off with a sentient vehicle, and "Ice-cold Car," focusing on the physical difficulties of freezing weather. It explores how narratives can dominate the meaning of images by shifting from a life simulation satire to a completely different genre.</p>
+                        <div class="button-group">
+                            <a href="https://drive.google.com/file/d/1kO-5tgJHILP9aUxz5KOvfCFeay2nuOCT/view?usp=sharing" target="_blank" class="action-button-centered inline-button">Play "Cursed Car" >></a>
+                            <a href="https://drive.google.com/file/d/12vpKJtg13vbkbtYt-1blUHnE4ZiCxvZ8/view?usp=sharing" target="_blank" class="action-button-centered inline-button">Play "Ice-Cold Car" >></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div style="height: 100px;"></div>
+        </div>
+    </div>
+
+    <!-- OVERLAY 3: Photography Showcase -->
+    <div class="project-page" id="project-photography">
+        <button class="close-page-btn" id="close-photography-btn"><span class="return-icon">✕</span><span class="close-text">CLOSE</span></button>
+        
+        <div class="full-content-column">
+            <h2 class="project-title" style="margin-top: 0;">Captured Reality: A Multimedia Showcase</h2>
+            
+            <div class="project-meta">
+                <div class="meta-row">
+                    <span><strong>YEAR:</strong> 2022-2026</span>
+                    <span><strong>MEDIUM:</strong> Digital Photography, Post-Production</span>
+                </div>
+                <div class="meta-row">
+                    <span><strong>ROLE:</strong> Photographer, Editor</span>
+                </div>
+            </div>
+            
+            <!-- Photo Carousel System -->
+            <div class="carousel-container">
+                
+                <div class="carousel-slide active">
+                    <img src="images/SFMotor.jpg" alt="Photography 1">
+                    <div class="carousel-caption">
+                        <p><strong>01 //</strong> Presidental motorade at SF APEC 2023, the first meet between US and China leaders since the trade war.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/SFCrowd.jpg" alt="Photography 2">
+                    <div class="carousel-caption">
+                        <p><strong>02 //</strong> Presidental motorade at SF APEC 2023, the first meet between US and China leaders since the trade war.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/SFRiotPolice.jpg" alt="Photography 3">
+                    <div class="carousel-caption">
+                        <p><strong>03 //</strong> Presidental motorade during the first meet between US and China leaders since the trade war, San Franciso APEC 2023</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/JetLegacy.jpg" alt="Photography 4">
+                    <div class="carousel-caption">
+                        <p><strong>04 //</strong> USAF legacy showcase, 2023 So Cal Air Show at March Air Reserve Base</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/Thunderbird.jpg" alt="Photography 5">
+                    <div class="carousel-caption">
+                        <p><strong>05 //</strong> USAF Thunderbird, 2023 So Cal Air Show at March Air Reserve Base</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/BJParade.jpg" alt="Photography 6">
+                    <div class="carousel-caption">
+                        <p><strong>06 //</strong> PLAAF Air formation, 2025 80th Anniversary of the Victory of the Chinese People's War of Resistance </p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/SDAirport.jpg" alt="Photography 7">
+                    <div class="carousel-caption">
+                        <p><strong>07 //</strong> San Diego International Airport overview </p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/SCFire.jpg" alt="Photography 8">
+                    <div class="carousel-caption">
+                        <p><strong>08 //</strong> Santa Cruz Fire Department on the job, 2025 Santa Cruz</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/SCProtest.jpg" alt="Photography 9">
+                    <div class="carousel-caption">
+                        <p><strong>09 //</strong> 2025 Santa Cruz</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/NikeFactory.jpg" alt="Photography 10">
+                    <div class="carousel-caption">
+                        <p><strong>10 //</strong> Survey of Nike's Shoe Factory in China, 2025 China</p>
+                    </div>
+                </div>
+
+                <!-- Carousel Controls -->
+                <button class="carousel-btn left-btn" id="prev-photo">&#10094;</button>
+                <button class="carousel-btn right-btn" id="next-photo">&#10095;</button>
+            </div>
+
+            <div class="text-content" style="max-width: 720px; margin: 60px auto 0 auto;">
+                <p class="artist-statement">
+                    <strong style="font-size: 2.2rem; font-weight: 800; margin-right: 2px; vertical-align: baseline;">As</strong> an artist focused on our shared reality, I devote much of my time to observing, documenting, and understanding the current state of the world. Through my camera lens, I capture events that mark important moments of our generation—from the world of aviation, which has been critical to today's geopolitics, to the intense, raw realities of major political events and everyday working people.
+                </p>
+                <p class="artist-statement">
+                    The shared theme connecting these photos is the hidden detail in the "faces" of these overlooked events, capturing the everlasting tension between the rigid discipline of structural order and the unpredictable, raw nature of human emotion and conflict. This combination of capturing unfiltered images and bridging physical barriers allows me to share a distinct, comprehensive perspective of reality as it unfolds.
+                </p>
+                <p class="artist-statement" style="margin-bottom: 0;">
+                    Over the years, I have built a community of thousands of followers who are intrigued by this perspective. If my interactive games are meant to recreate the atmosphere of the past, this multimedia work is my way of preserving the immediate present. By documenting these stark contrasts, I aim to provide a grounded and balanced reflection of the human experience exactly as it exists today.
+                </p>
+            </div>
+            
+            <div style="height: 100px;"></div>
+        </div>
+    </div>
+
+    <!-- OVERLAY 4: DEMO REEL -->
+    <div class="project-page" id="project-demo">
+        
+        <!-- The Close Button stays so the user can exit -->
+        <button class="close-page-btn" id="close-demo-btn"><span class="return-icon">✕</span><span class="close-text">CLOSE</span></button>
+        
+        <div class="full-content-column">
+            <!-- The video container is now the only element -->
+            <div class="video-container">
+                <iframe src="https://drive.google.com/file/d/1sHfqgdSdcISLYv05BRAufBuz6KXQ4Vgr/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERLAY 5: Tabletop Systems -->
+    <div class="project-page" id="project-tabletop">
+        <button class="close-page-btn" id="close-tabletop-btn"><span class="return-icon">✕</span><span class="close-text">CLOSE</span></button>
+    
+        <!-- The Left-Side Anchor Image (Placeholder) -->
+        <!-- The Left-Side Anchor Image (Placeholder) -->
+        <img src="images/tabletop.png" alt="A Lot Can Happen in 4 Years Gameboard" class="hero-poster-anim">
+        
+        <div class="right-content-column">
+            <!-- Shrunk the font slightly to accommodate the long title -->
+            <h2 class="project-title" style="margin-top: 0; font-size: 2.5rem;">"A Lot Can Happen in 4 Years":<br>Roleplay Among The Powerful</h2>
+            
+            <div class="project-meta">
+                <div class="meta-row">
+                    <span><strong>YEAR:</strong> 2025</span>
+                    <span><strong>MEDIUM:</strong> Tabletop Role-Playing Game</span>
+                </div>
+                <div class="meta-row">
+                    <span><strong>ROLE:</strong> Co-Designer / Co-Creator / Trailer</span>
+                </div>
+            </div>
+            
+            <div class="text-content">
+                <p>
+                    <em>A Lot Can Happen in 4 Years</em> is a tabletop role-playing game designed for three or more players. Players take on the roles of Councilors who share equal power over a newly formed democratic fantasy nation. However, one player operates as a "Secret Dictator," attempting to exploit the political power vacuum to seize absolute control before the council's four-year term expires.
+                </p>
+                <p>
+                    The game features active and player-oriented world-building, requiring participants to physically draw and update a map as new lore is introduced. The core gameplay loop revolves around a rotating "Messenger" who delivers randomized news cards, some national and others targeted at specific councilors, forcing the group to debate decrees, manage citizen votes, navigate seasonal events, or even initiate a coup.
+                </p>
+                <p>
+                    We intentionally designed this project without a Game Master to mechanically reflect the reality of high-level leadership: when players are only bound by a rulebook and their own morality, they are heavily incentivized to break the rules and prioritize their own efficiency over creating a compelling world for everyone. 
+                </p>
+                <p>
+                    The game serves as a direct critique of the passive democratic assumption that society can simply "wait out" an inadequate politician's term, demonstrating how manipulation exists and functions as a core part of the political systems of today.
+                </p>
+
+                <!-- External Links converted to your stylized buttons -->
+                <div class="button-group" style="margin-top: 40px;">
+                    <a href="https://docs.google.com/document/d/1zSSeg9xm-tvhfcfO0eKz1DndZ6qlACzDQXf4LTNQkls/edit?usp=sharing" target="_blank" class="action-button-centered inline-button" style="margin-top: 0;">Rulebook >></a>
+                    
+                    <a href="https://miro.com/app/board/uXjVNvxQgX4=/?share_link_id=719411271315" target="_blank" class="action-button-centered inline-button" style="margin-top: 0; background: #ffffff; color: #000000;">Sample Gameboard >></a>
+                </div>
+            </div>
+
+            <!-- Embedded Trailer Video -->
+            <div class="video-container">
+                <iframe src="https://drive.google.com/file/d/1SSqsY0epunMPfJrSbPKO4HqfR5eol4V-/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+        </div>  
+    </div>
+
+    <!-- OVERLAY 6: 3D Rigging & Creations -->
+    <div class="project-page" id="project-rigging">
+        <button class="close-page-btn" id="close-rigging-btn"><span class="return-icon">✕</span><span class="close-text">CLOSE</span></button>
+        
+        <div class="full-content-column">
+            <h2 class="project-title" style="margin-top: 0;">3D Rigging & Creations</h2>
+            
+            <div class="project-meta">
+                <div class="meta-row">
+                    <span><strong>SOFTWARE:</strong> Autodesk Maya, Blender</span>
+                    <span><strong>FOCUS:</strong> Hierarchies, Weight Painting, Character Sculpting</span>
+                </div>
+            </div>
+            
+            <!-- Reusing the exact same Carousel System -->
+            <div class="carousel-container">
+                
+                <div class="carousel-slide active">
+                    <img src="images/rigging-placeholder-1.jpg" alt="3D Creation 1">
+                    <div class="carousel-caption">
+                        <p><strong>01 //</strong> Character sculpting and anatomical block-outs in Blender.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/rigging-placeholder-2.jpg" alt="3D Creation 2">
+                    <div class="carousel-caption">
+                        <p><strong>02 //</strong> Establishing base topology and edge flow for deformation.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/rigging-placeholder-3.jpg" alt="3D Creation 3">
+                    <div class="carousel-caption">
+                        <p><strong>03 //</strong> Primary rigging hierarchies and skeletal alignment in Autodesk Maya.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/rigging-placeholder-4.jpg" alt="3D Creation 4">
+                    <div class="carousel-caption">
+                        <p><strong>04 //</strong> Inverse Kinematics (IK) and Forward Kinematics (FK) system integration.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/rigging-placeholder-5.jpg" alt="3D Creation 5">
+                    <div class="carousel-caption">
+                        <p><strong>05 //</strong> Precise weight painting for realistic joint articulation.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/rigging-placeholder-6.jpg" alt="3D Creation 6">
+                    <div class="carousel-caption">
+                        <p><strong>06 //</strong> Corrective blendshapes to resolve volume loss in extreme poses.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/rigging-placeholder-7.jpg" alt="3D Creation 7">
+                    <div class="carousel-caption">
+                        <p><strong>07 //</strong> Facial rigging mechanics and expression controllers.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/rigging-placeholder-8.jpg" alt="3D Creation 8">
+                    <div class="carousel-caption">
+                        <p><strong>08 //</strong> Custom control curve generation and UI scripting.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/rigging-placeholder-9.jpg" alt="3D Creation 9">
+                    <div class="carousel-caption">
+                        <p><strong>09 //</strong> Final rig stress-testing and animation validation.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <img src="images/rigging-placeholder-10.jpg" alt="3D Creation 10">
+                    <div class="carousel-caption">
+                        <p><strong>10 //</strong> Completed character model ready for narrative simulation deployment.</p>
+                    </div>
+                </div>
+
+                <!-- Unique Button IDs for this specific carousel -->
+                <button class="carousel-btn left-btn" id="prev-rigging">&#10094;</button>
+                <button class="carousel-btn right-btn" id="next-rigging">&#10095;</button>
+            </div>
+
+            <!-- Upgraded Exhibition Text Layout -->
+            <div class="text-content" style="max-width: 720px; margin: 60px auto 0 auto;">
+                <p class="artist-statement">
+                    <strong style="font-size: 2.2rem; font-weight: 800; margin-right: 2px; vertical-align: baseline;">As</strong> a realist, I approach 3D rigging and character creation with an emphasis on structural accuracy and anatomical precision. My goal is not merely to construct a visually appealing surface, but to build a digital framework that moves, deforms, and reacts exactly as it would in reality.
+                </p>
+                <p class="artist-statement" style="margin-bottom: 0;">
+                    Whether I am establishing complex rigging hierarchies and executing detailed weight painting in Autodesk Maya, or sculpting raw character forms in Blender, I treat the digital workspace as a literal extension of the physical world. By grounding these digital tools in the rigid discipline of structural order, I create reliable, high-performance assets ready for narrative simulation.
+                </p>
+            </div>
+            
+            <div style="height: 100px;"></div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- JAVASCRIPT LOGIC -->
+    <!-- ========================================= -->
+    <script>
+        const scrollContainer = document.getElementById('master-scroll');
+        const nextButton = document.getElementById('next-button');
+        
+        // This calculates the duration of the initial loading screen
+        const totalDelay = 1500 + 2000; 
+
+        // ----------------------------------------------------
+        // 1. Cinematic Keyword Shuffle & Statement Reveal
+        // ----------------------------------------------------
+        const keywordElement = document.getElementById('keyword-shuffle');
+        const statementContent = document.getElementById('statement-content');
+
+        // The important words that will display slowly
+        const primaryKeywords = ["OBSERVER", "DOCUMENTARIAN", "ARCHIVIST", "SIMULATOR"];
+        
+        // The filler words for the high-speed chaotic blur
+        const chaoticKeywords = ["CREATOR", "ANALYST", "TECHNICIAN", "VISIONARY", "DIRECTOR", "PROGRAMMER", "STORYTELLER", "EDITOR", "SYNTHESIZER", "DEVELOPER", "INSPECTOR", "WITNESS", "DESIGNER", "ENGINEER"];
+        
+        let shuffleStep = 0;
+        const totalFastShuffles = 25; // How many times it flashes during the fast phase
+
+        // Start the sequence after the page scrolls down
+        setTimeout(() => {
+            
+            function doShuffle() {
+                // Phase 1: Slow, readable primary keywords
+                if (shuffleStep < primaryKeywords.length) {
+                    keywordElement.innerText = primaryKeywords[shuffleStep];
+                    shuffleStep++;
+                    // Wait 400ms before showing the next slow word
+                    setTimeout(doShuffle, 400); 
+                } 
+                // Phase 2: The high-speed chaotic blur
+                else if (shuffleStep < primaryKeywords.length + totalFastShuffles) {
+                    const randomWord = chaoticKeywords[Math.floor(Math.random() * chaoticKeywords.length)];
+                    keywordElement.innerText = randomWord;
+                    shuffleStep++;
+                    // Flash words incredibly fast (40ms)
+                    setTimeout(doShuffle, 40); 
+                } 
+                // Phase 3: Abrupt stop on REALIST and proceed
+                else {
+                    keywordElement.innerText = "REALIST"; 
+                    
+                    // Wait 1.8 seconds so the user can absorb the word
+                    setTimeout(() => {
+                        keywordElement.style.transition = "opacity 0.8s ease";
+                        keywordElement.style.opacity = "0";
+
+                        // Fade in the paragraph
+                        setTimeout(() => {
+                            keywordElement.style.display = "none";
+                            statementContent.style.display = "block";
+
+                            setTimeout(() => {
+                                statementContent.style.opacity = "1";
+
+                                // Fade in the Learn More button after 3.5 seconds
+                                setTimeout(() => {
+                                    // Make it clickable and fade it in simultaneously
+                                    nextButton.style.visibility = "visible";
+                                    nextButton.style.opacity = "1";
+                                }, 3500);
+
+                            }, 50);
+                        }, 800); 
+                    }, 1800); 
+                }
+            }
+
+            // Kick off the animation loop
+            doShuffle();
+
+        }, totalDelay + 800);
+
+        // ----------------------------------------------------
+        // 2. Initial Scroll & Logo Shrink
+        // ----------------------------------------------------
+        setTimeout(() => {
+            // Scrolls down from Page 1 to Page 2
+            scrollContainer.style.transform = 'translateY(-100vh)';
+            // Triggers the CSS animation to shrink the logo to the top of the screen
+            document.getElementById('main-logo').classList.add('watermark');
+        }, totalDelay);
+
+        // ----------------------------------------------------
+        // 3. Next Button Cinematic Shutter Scroll
+        // ----------------------------------------------------
+        if(nextButton) {
+            nextButton.addEventListener('click', () => {
+                const shutter = document.getElementById('camera-shutter');
+                
+                // Phase 1: Sweep the black shutter up to cover the screen
+                shutter.classList.add('close');
+                
+                // Phase 2: Wait exactly 0.5 seconds for the screen to go black
+                setTimeout(() => {
+                    // Turn off the smooth scroll temporarily so the page snaps instantly behind the shutter
+                    scrollContainer.style.transition = 'none';
+                    scrollContainer.style.transform = 'translateY(-200vh)'; // Snaps to Page 3 Menu
+                    
+                    // Phase 3: A tiny fraction of a second later, sweep the shutter up and away
+                    setTimeout(() => {
+                        shutter.classList.remove('close');
+                        shutter.classList.add('open');
+                        
+                        // Turn the smooth scroll back on just in case it's needed later
+                        setTimeout(() => {
+                            scrollContainer.style.transition = 'transform 1.2s cubic-bezier(0.77, 0, 0.175, 1)';
+                        }, 50);
+                    }, 50); 
+                    
+                }, 500); // This 500ms matches the 0.5s transition in the CSS
+            });
+        }
+
+        // ----------------------------------------------------
+        // 4. Interactive Performance Overlay Event Listeners
+        // ----------------------------------------------------
+        const btnPerformance = document.getElementById('btn-performance');
+        const projectPerformance = document.getElementById('project-performance');
+        const closePerformanceBtn = document.getElementById('close-performance-btn');
+
+        if(btnPerformance && projectPerformance) {
+            btnPerformance.addEventListener('click', () => {
+                projectPerformance.classList.add('active'); // Fades in background
+                setTimeout(() => { projectPerformance.classList.add('stage-2'); }, 500); // Slides in content
+            });
+            closePerformanceBtn.addEventListener('click', () => {
+                projectPerformance.classList.remove('stage-2'); // Slides out content
+                setTimeout(() => { projectPerformance.classList.remove('active'); }, 800); // Fades out background
+            });
+        }
+
+        // ----------------------------------------------------
+        // 5. Playable Media Overlay Event Listeners
+        // ----------------------------------------------------
+        const btnPlayable = document.getElementById('btn-playable');
+        const projectPlayable = document.getElementById('project-playable');
+        const closePlayableBtn = document.getElementById('close-playable-btn');
+
+        if(btnPlayable && projectPlayable) {
+            btnPlayable.addEventListener('click', () => {
+                projectPlayable.classList.add('active');
+                setTimeout(() => { projectPlayable.classList.add('stage-2'); }, 500); 
+            });
+            closePlayableBtn.addEventListener('click', () => {
+                projectPlayable.classList.remove('stage-2');
+                setTimeout(() => { projectPlayable.classList.remove('active'); }, 800);
+            });
+        }
+
+        // ----------------------------------------------------
+        // 6. Photography Showcase Overlay Event Listeners
+        // ----------------------------------------------------
+        const btnPhotography = document.getElementById('btn-photography');
+        const projectPhotography = document.getElementById('project-photography');
+        const closePhotographyBtn = document.getElementById('close-photography-btn');
+
+        if(btnPhotography && projectPhotography) {
+            btnPhotography.addEventListener('click', () => {
+                projectPhotography.classList.add('active');
+                setTimeout(() => { projectPhotography.classList.add('stage-2'); }, 100); 
+            });
+            closePhotographyBtn.addEventListener('click', () => {
+                projectPhotography.classList.remove('stage-2');
+                setTimeout(() => { projectPhotography.classList.remove('active'); }, 600);
+            });
+        }
+
+        // ----------------------------------------------------
+        // 7. Carousel Logic (Used in Photography Overlay)
+        // ----------------------------------------------------
+        const slides = document.querySelectorAll('.carousel-slide');
+        const nextPhotoBtn = document.getElementById('next-photo');
+        const prevPhotoBtn = document.getElementById('prev-photo');
+        let currentSlide = 0;
+
+        if(slides.length > 0) {
+            function showSlide(index) {
+                // Remove active class from all slides
+                slides.forEach(slide => slide.classList.remove('active'));
+                
+                // Handle looping around at the ends of the array
+                if (index >= slides.length) currentSlide = 0;
+                else if (index < 0) currentSlide = slides.length - 1;
+                else currentSlide = index;
+                
+                // Add active class to the current slide
+                slides[currentSlide].classList.add('active');
+            }
+
+            nextPhotoBtn.addEventListener('click', () => { showSlide(currentSlide + 1); });
+            prevPhotoBtn.addEventListener('click', () => { showSlide(currentSlide - 1); });
+        }
+
+        // ----------------------------------------------------
+        // 8. Demo Reel Overlay Event Listeners
+        // ----------------------------------------------------
+        const btnDemo = document.getElementById('btn-demo');
+        const projectDemo = document.getElementById('project-demo');
+        const closeDemoBtn = document.getElementById('close-demo-btn');
+
+        if(btnDemo && projectDemo) {
+            btnDemo.addEventListener('click', () => {
+                projectDemo.classList.add('active');
+                // Slides up slightly faster since there is no left-side poster
+                setTimeout(() => { projectDemo.classList.add('stage-2'); }, 100); 
+            });
+            closeDemoBtn.addEventListener('click', () => {
+                projectDemo.classList.remove('stage-2');
+                setTimeout(() => { projectDemo.classList.remove('active'); }, 600);
+            });
+        }
+
+        // ----------------------------------------------------
+        // 9. Copy Email to Clipboard Feature (Footer Interaction)
+        // ----------------------------------------------------
+        const contactBtn = document.getElementById('contact-copy-btn');
+        const contactText = document.getElementById('contact-text');
+
+        if(contactBtn && contactText) {
+            contactBtn.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevents page jumping to top
+                
+                // Triggers native browser clipboard API
+                navigator.clipboard.writeText('zlc765261623@gmail.com').then(() => {
+                    // Change text and add the black background flash
+                    contactText.innerText = 'COPIED!';
+                    contactBtn.classList.add('copied-flash');
+                    
+                    // Revert text and remove the background after 2 seconds
+                    setTimeout(() => {
+                        contactText.innerText = 'CONTACT';
+                        contactBtn.classList.remove('copied-flash');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            });
+        }
+
+        // ----------------------------------------------------
+        // 10. Tabletop Systems Overlay Event Listeners
+        // ----------------------------------------------------
+        const btnTabletop = document.getElementById('btn-tabletop');
+        const projectTabletop = document.getElementById('project-tabletop');
+        const closeTabletopBtn = document.getElementById('close-tabletop-btn');
+
+        if(btnTabletop && projectTabletop) {
+            btnTabletop.addEventListener('click', () => {
+                projectTabletop.classList.add('active'); 
+                setTimeout(() => { projectTabletop.classList.add('stage-2'); }, 500); 
+            });
+            closeTabletopBtn.addEventListener('click', () => {
+                projectTabletop.classList.remove('stage-2'); 
+                setTimeout(() => { projectTabletop.classList.remove('active'); }, 800); 
+            });
+        }
+
+        // ----------------------------------------------------
+        // 11. 3D Rigging Overlay Event Listeners
+        // ----------------------------------------------------
+        const btnRigging = document.getElementById('btn-rigging');
+        const projectRigging = document.getElementById('project-rigging');
+        const closeRiggingBtn = document.getElementById('close-rigging-btn');
+
+        if(btnRigging && projectRigging) {
+            btnRigging.addEventListener('click', () => {
+                projectRigging.classList.add('active'); 
+                setTimeout(() => { projectRigging.classList.add('stage-2'); }, 100); 
+            });
+            closeRiggingBtn.addEventListener('click', () => {
+                projectRigging.classList.remove('stage-2'); 
+                setTimeout(() => { projectRigging.classList.remove('active'); }, 800); 
+            });
+        }
+
+        // ----------------------------------------------------
+        // 12. 3D Rigging Carousel Logic (Isolated)
+        // ----------------------------------------------------
+        // We specifically target slides ONLY inside the #project-rigging div
+        const riggingSlides = document.querySelectorAll('#project-rigging .carousel-slide');
+        const nextRiggingBtn = document.getElementById('next-rigging');
+        const prevRiggingBtn = document.getElementById('prev-rigging');
+        let currentRiggingSlide = 0;
+
+        if(riggingSlides.length > 0) {
+            function showRiggingSlide(index) {
+                // Remove active class from all rigging slides
+                riggingSlides.forEach(slide => slide.classList.remove('active'));
+                
+                // Handle looping around
+                if (index >= riggingSlides.length) currentRiggingSlide = 0;
+                else if (index < 0) currentRiggingSlide = riggingSlides.length - 1;
+                else currentRiggingSlide = index;
+                
+                // Add active class to the current slide
+                riggingSlides[currentRiggingSlide].classList.add('active');
+            }
+
+            nextRiggingBtn.addEventListener('click', () => { showRiggingSlide(currentRiggingSlide + 1); });
+            prevRiggingBtn.addEventListener('click', () => { showRiggingSlide(currentRiggingSlide - 1); });
+        }
+    </script>
+</body>
+</html>
