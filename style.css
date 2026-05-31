@@ -1048,15 +1048,20 @@ body {
     }
     
     /* OVERRIDE: Pull the menu WAY up since the logo is gone */
+    /* OVERRIDE: Create a dedicated, uncrushable safety zone at the top of the menu page */
     .fullscreen-page:nth-of-type(3) {
-        padding-top: 20px !important; /* Creates a small, absolute safe zone at the top */
+        padding-top: 100px !important; /* Force a huge safe zone that no flex centering can override */
+        display: flex !important; /* Switch back to flex layout */
+        flex-direction: column;
+        justify-content: flex-start; /* Start from the floor of the safe zone */
     }
 
     .fullscreen-page:nth-of-type(3) .dialogue-box { 
-        margin-top: 8vh !important; /* Pushes the menu down to simulate centering safely */
+        margin-top: 0 !important; /* Let the parent's padding handle the gap */
         padding-top: 0 !important; 
         
-        /* THE FIX: Force the layout to start from the top, preventing the upward clip */
-        justify-content: flex-start !important; 
+        /* RESTORE: Allow proper flex centering, but only below the safe zone */
+        justify-content: center !important; 
+        align-items: center;
     }
 }
