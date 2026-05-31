@@ -848,6 +848,11 @@ body {
         margin-top: 15vh !important; 
     }
 
+    /* FIX 2.5: Pull the Menu Page upward without breaking the Shuffle page */
+    .fullscreen-page:nth-of-type(3) .dialogue-box {
+        margin-top: 2vh !important; /* Decrease to 0vh to push it even higher, or increase to lower it */
+    }
+
     #keyword-shuffle {
         width: 100% !important;
         text-align: center !important;
@@ -858,7 +863,7 @@ body {
     .massive-text { font-size: 2.2rem !important; }
     .character-name { font-size: 2rem !important; }
     .character-role { font-size: 0.9rem !important; letter-spacing: 2px; }
-    .project-title { font-size: 1.8rem !important; margin-top: 40px !important; }
+    .project-title { font-size: 1.8rem !important; margin-top: 10px !important; }
     
     .artist-statement { 
         font-size: 0.95rem !important; 
@@ -888,9 +893,14 @@ body {
     .full-content-column,
     .right-content-column {
         width: 100vw !important;
-        left: 0 !important;       /* Forces it to the left edge */
-        right: auto !important;   /* Disables right alignment */
-        padding: 80px 5vw 100px 5vw !important; 
+        left: 0 !important;       
+        right: auto !important;   
+        padding: 60px 5vw 100px 5vw !important; /* Reduced top padding to pull content up */
+    }
+
+    /* Protect the Demo Reel so the video stays edge-to-edge */
+    #project-demo .full-content-column {
+        padding: 0 !important; 
     }
     .hero-poster-anim { display: none !important; }
 
