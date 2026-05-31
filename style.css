@@ -804,36 +804,74 @@ body {
 
 @media (max-width: 768px) {
     
-    /* 1. Shrink the massive typography */
-    .massive-text { font-size: 2.5rem; }
+    /* 1. Contain the spill & Enable native swiping */
+    .fullscreen-page {
+        overflow-y: auto; /* Allows you to scroll if the screen is tiny */
+        overflow-x: hidden;
+        padding-top: 80px; /* Creates a permanent safe zone for the logo */
+        padding-bottom: 40px;
+    }
+
+    /* 2. Shrink and tuck the logo */
+    .persistent-logo.watermark {
+        width: 55px;
+        top: 15px;
+    }
+
+    /* 3. Shrink the massive typography */
+    .massive-text { font-size: 2.2rem; }
     .character-name { font-size: 2rem; }
+    .character-role { font-size: 0.9rem; letter-spacing: 2px; }
     .project-title { font-size: 1.8rem; margin-top: 40px; }
-    .artist-statement { font-size: 1rem; }
+    
+    /* 4. Compact the Artist Statement */
+    .dialogue-box { 
+        padding: 20px !important; 
+        margin-top: 0 !important; 
+        min-height: auto !important;
+    }
+    .artist-statement { 
+        font-size: 0.95rem !important; 
+        line-height: 1.5 !important; 
+        margin-bottom: 15px !important; 
+    }
+    #next-button { margin-top: 20px !important; }
 
-    /* 2. Tighten up the main menu and text boxes */
-    .dialogue-box { padding: 30px 20px; }
-    .options-menu.icon-grid { grid-template-columns: 1fr; } /* Stacks buttons vertically */
-    .social-footer { flex-direction: column; gap: 15px; }
-    .social-divider { display: none; } /* Hides the // on mobile */
+    /* 5. Compact the Dashboard Menu (2 columns instead of 1 tall stack) */
+    .prompt-text { margin-bottom: 20px; font-size: 0.8rem; }
+    .options-menu.icon-grid { 
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px; 
+    }
+    .game-option.grid-item { 
+        padding: 15px 10px; 
+        font-size: 0.75rem; 
+        gap: 8px;
+    }
+    .game-option.grid-item svg { width: 28px; height: 28px; }
 
-    /* 3. Fix the Layout Overlays (Single Column mode) */
+    /* Footer tweaks */
+    .social-footer { flex-direction: column; gap: 15px; margin-top: 30px; }
+    .social-divider { display: none; }
+
+    /* 6. Fix the Layout Overlays (Single Column mode) */
     .full-content-column,
     .right-content-column {
         width: 100vw;
-        padding: 80px 5vw 100px 5vw; /* Reduces massive side padding */
+        padding: 80px 5vw 100px 5vw; 
     }
 
-    /* Hide the floating left-side desktop posters to save screen space */
+    /* Hide the floating desktop posters to save screen space */
     .hero-poster-anim { display: none !important; }
 
-    /* 4. Playable Media: Stack the image on top of the text */
+    /* 7. Playable Media: Stack the image on top of the text */
     .game-entry {
         grid-template-columns: 1fr; 
         gap: 15px;
     }
     .game-screenshot { height: auto; aspect-ratio: 16/9; }
 
-    /* 5. Performance Page: Stack the photo collage */
+    /* 8. Performance Page: Stack the photo collage */
     .project-collage {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
@@ -843,16 +881,16 @@ body {
     .collage-left, .collage-top-right, .collage-bottom-right {
         grid-column: 1 / -1;
         grid-row: auto;
-        aspect-ratio: 16/9; /* Forces all collage images to be uniform rectangles */
+        aspect-ratio: 16/9; 
     }
 
-    /* 6. Carousel Tweaks */
+    /* 9. Carousel Tweaks */
     .carousel-caption { padding: 10px; font-size: 0.75rem; }
     .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
     .left-btn { left: 10px; }
     .right-btn { right: 10px; }
 
-    /* 7. Close Button: Shrink to icon only */
+    /* 10. Close Button: Shrink to icon only */
     .close-page-btn {
         top: 20px;
         padding: 10px 12px;
