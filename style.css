@@ -1049,7 +1049,7 @@ body {
     
     /* OVERRIDE: Pull the menu WAY up since the logo is gone */
     .fullscreen-page:nth-of-type(3) {
-        padding-top: 40px !important; /* Kills the massive 110px logo safe-zone */
+        padding-top: 80px !important; /* Kills the massive 110px logo safe-zone */
     }
 
     .fullscreen-page:nth-of-type(3) .dialogue-box { 
