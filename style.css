@@ -1049,12 +1049,14 @@ body {
     
     /* OVERRIDE: Pull the menu WAY up since the logo is gone */
     .fullscreen-page:nth-of-type(3) {
-        padding-top: 80px !important; /* Kills the massive 110px logo safe-zone */
+        padding-top: 20px !important; /* Creates a small, absolute safe zone at the top */
     }
 
     .fullscreen-page:nth-of-type(3) .dialogue-box { 
-        margin-top: 0 !important; 
+        margin-top: 8vh !important; /* Pushes the menu down to simulate centering safely */
         padding-top: 0 !important; 
-        justify-content: center !important; /* Centers the menu perfectly in the new space */
+        
+        /* THE FIX: Force the layout to start from the top, preventing the upward clip */
+        justify-content: flex-start !important; 
     }
 }
