@@ -942,3 +942,63 @@ body {
     }
     .close-page-btn .close-text { display: none !important; }
 }
+
+    /* ========================================= */
+/* 10. FOLDABLE & TABLET OPTIMIZATION        */
+/* ========================================= */
+
+/* ----------------------------------------------------
+   STATE 1: The Unfolded Inner Screen (Tablet/Square Ratio)
+   Triggers when the screen is between 769px and 1100px wide
+---------------------------------------------------- */
+@media (min-width: 769px) and (max-width: 1100px) {
+    
+    /* Scale down the massive desktop fonts so they don't awkwardly wrap */
+    .massive-text { font-size: 3rem; }
+    .character-name { font-size: 2.5rem; }
+    .project-title { font-size: 2.2rem; }
+    
+    /* Widen the right-side text column so paragraphs aren't squeezed */
+    .right-content-column { 
+        width: 60vw; 
+        padding: 10vh 4vw 100px 4vw; 
+    }
+    
+    /* Shrink the floating desktop poster slightly to make room */
+    .project-page.stage-2 .hero-poster-anim { 
+        left: 20vw; 
+        max-width: 35vw; 
+    }
+    
+    /* Tighten the Dashboard Menu grid */
+    .options-menu.icon-grid { gap: 15px; }
+    .game-option.grid-item { padding: 20px 15px; }
+}
+
+/* ----------------------------------------------------
+   STATE 2: The Folded Cover Screen (Extremely Narrow)
+   Triggers when the screen is thinner than 430px
+---------------------------------------------------- */
+@media (max-width: 430px) {
+    
+    /* 1. Compensate for the extremely tall screen by reigning in the 'vh' heights */
+    .persistent-logo { top: 15vh !important; }
+    .title-container { margin-top: 30vh !important; }
+    
+    .dialogue-box { 
+        min-height: 40vh !important; 
+        margin-top: 10vh !important; 
+    }
+    
+    /* Pulls the Menu page perfectly up to the logo */
+    .fullscreen-page:nth-of-type(3) .dialogue-box { margin-top: 0vh !important; }
+
+    /* 2. Prevent the 2-column menu from crushing the buttons on a thin screen */
+    .options-menu.icon-grid { 
+        grid-template-columns: 1fr !important; /* Forces a single, neat vertical column */
+        gap: 12px !important;
+    }
+    
+    /* Expand button height slightly so they are easy to tap */
+    .game-option.grid-item { padding: 18px 10px !important; }
+}
