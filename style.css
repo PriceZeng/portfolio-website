@@ -1030,11 +1030,11 @@ body {
 }
 
 /* ----------------------------------------------------
-   THE MOBILE MENU DECLUTTER (All screens under 1100px)
+   THE MOBILE MENU DECLUTTER & CLIP FIX (All screens under 1100px)
 ---------------------------------------------------- */
 @media (max-width: 1100px) {
     
-    /* Ensure the watermark logo sits perfectly on the statement page */
+    /* Ensure the watermark logo sits perfectly on the statement page (Page 2) */
     .persistent-logo.watermark {
         width: 55px !important;
         top: 20px !important;
@@ -1042,26 +1042,46 @@ body {
         z-index: 1500 !important; 
     }
 
-    /* Completely hide the logo once the user reaches the menu */
+    /* Completely hide the logo once the user reaches the menu (Page 3) */
     .persistent-logo.menu-hidden {
         display: none !important;
     }
     
-    /* OVERRIDE: Pull the menu WAY up since the logo is gone */
-    /* OVERRIDE: Create a dedicated, uncrushable safety zone at the top of the menu page */
+    /* THE FIX FOR THE CLIPPED PROMPT: Replicate cinematic vertical center safely */
+    
+    /* Step 1: Tell the parent to break the centering logic */
     .fullscreen-page:nth-of-type(3) {
-        padding-top: 100px !important; /* Force a huge safe zone that no flex centering can override */
-        display: flex !important; /* Switch back to flex layout */
-        flex-direction: column;
-        justify-content: flex-start; /* Start from the floor of the safe zone */
+        display: block !important; /* Force standard block stacking, not flex centering */
+        padding: 80px 20px 40px 20px !important; /* FIX: Creates an absolute 80px safe zone at the top for the URL bar/notch */
+        overflow-y: auto !important; /* Guarantees swiping works if content is tall */
+        height: 100vh !important; /* Full visible height */
     }
 
-    .fullscreen-page:nth-of-type(3) .dialogue-box { 
-        margin-top: 0 !important; /* Let the parent's padding handle the gap */
-        padding-top: 0 !important; 
+    /* Step 2: Configure the child container to start at the safe y-position */
+    .fullscreen-page:nth-of-type(3) .dialogue-box {
+        display: block !important; /* Break centering rules here as well */
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        width: 100% !important; /* Respect parent padding */
         
-        /* RESTORE: Allow proper flex centering, but only below the safe zone */
-        justify-content: center !important; 
-        align-items: center;
+        /* Forces the container floor to be halfway down the screen (Page 3 specific) */
+        min-height: 50vh !important; 
+        
+        /* NEW TARGET: Push the text down to simulate centering safely */
+        margin-top: 10vh !important; 
+    }
+
+    /* Step 3: Targeted spacing for the prompt text */
+    .fullscreen-page:nth-of-type(3) .prompt-text {
+        text-align: center !important;
+        margin-bottom: 25px !important; /* Creates space before the grid starts */
+        margin-top: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    /* Step 4: Keep the grid horizontally centered */
+    .fullscreen-page:nth-of-type(3) .options-menu.icon-grid {
+        margin: 0 auto !important; 
     }
 }
