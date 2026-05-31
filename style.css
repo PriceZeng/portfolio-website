@@ -943,7 +943,7 @@ body {
     .close-page-btn .close-text { display: none !important; }
 }
 
-    /* ========================================= */
+/* ========================================= */
 /* 10. FOLDABLE & TABLET OPTIMIZATION        */
 /* ========================================= */
 
@@ -952,24 +952,49 @@ body {
    Triggers when the screen is between 769px and 1100px wide
 ---------------------------------------------------- */
 @media (min-width: 769px) and (max-width: 1100px) {
-    
-    /* Scale down the massive desktop fonts so they don't awkwardly wrap */
-    .massive-text { font-size: 3rem; }
-    .character-name { font-size: 2.5rem; }
-    .project-title { font-size: 2.2rem; }
-    
-    /* Widen the right-side text column so paragraphs aren't squeezed */
-    .right-content-column { 
-        width: 60vw; 
-        padding: 10vh 4vw 100px 4vw; 
+
+    /* SCROLL FIX: Force the layout to behave like mobile so it doesn't cut off the top */
+    .fullscreen-page {
+        height: 100vh !important;
+        display: block !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        padding: 100px 20px 40px 20px !important;
+    }
+
+    /* Keep the shuffle text and menu perfectly centered */
+    .dialogue-box {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+        min-height: 50vh !important;
+        margin-top: 10vh !important;
     }
     
-    /* Shrink the floating desktop poster slightly to make room */
-    .project-page.stage-2 .hero-poster-anim { 
-        left: 20vw; 
-        max-width: 35vw; 
+    /* Reset the top margin specifically for the Menu page */
+    .fullscreen-page:nth-of-type(3) .dialogue-box { margin-top: 0 !important; }
+
+    /* Scale down the massive desktop fonts */
+    .massive-text { font-size: 3rem !important; }
+    .character-name { font-size: 2.5rem !important; }
+    .project-title { font-size: 2.2rem !important; margin-top: 20px !important; }
+
+    /* Widen the text columns into a full-screen mobile layout */
+    .full-content-column,
+    .right-content-column {
+        width: 100vw !important;
+        left: 0 !important;
+        right: auto !important;
+        padding: 80px 5vw 100px 5vw !important;
     }
-    
+
+    .hero-poster-anim { display: none !important; }
+
     /* Tighten the Dashboard Menu grid */
     .options-menu.icon-grid { gap: 15px; }
     .game-option.grid-item { padding: 20px 15px; }
@@ -980,25 +1005,45 @@ body {
    Triggers when the screen is thinner than 430px
 ---------------------------------------------------- */
 @media (max-width: 430px) {
-    
-    /* 1. Compensate for the extremely tall screen by reigning in the 'vh' heights */
-    .persistent-logo { top: 15vh !important; }
-    .title-container { margin-top: 30vh !important; }
-    
-    .dialogue-box { 
-        min-height: 40vh !important; 
-        margin-top: 10vh !important; 
-    }
-    
-    /* Pulls the Menu page perfectly up to the logo */
-    .fullscreen-page:nth-of-type(3) .dialogue-box { margin-top: 0vh !important; }
 
-    /* 2. Prevent the 2-column menu from crushing the buttons on a thin screen */
-    .options-menu.icon-grid { 
-        grid-template-columns: 1fr !important; /* Forces a single, neat vertical column */
+    /* Add extra padding to the top so the menu clears the logo */
+    .fullscreen-page { padding-top: 110px !important; }
+
+    /* Compensate for the extremely tall screen on Page 1 & 2 */
+    .persistent-logo { top: 22vh !important; }
+    .title-container { margin-top: 38vh !important; }
+
+    .dialogue-box {
+        min-height: 40vh !important;
+        margin-top: 10vh !important;
+    }
+
+    /* Position the Menu specifically */
+    .fullscreen-page:nth-of-type(3) .dialogue-box { margin-top: 10px !important; }
+
+    /* Force a single column for the menu so buttons aren't crushed */
+    .options-menu.icon-grid {
+        grid-template-columns: 1fr !important;
         gap: 12px !important;
     }
-    
-    /* Expand button height slightly so they are easy to tap */
     .game-option.grid-item { padding: 18px 10px !important; }
+}
+
+/* ----------------------------------------------------
+   THE SCROLLING CLASH FIX (All screens under 1100px)
+---------------------------------------------------- */
+@media (max-width: 1100px) {
+    
+    .persistent-logo.watermark {
+        width: 55px !important;
+        top: 20px !important;
+        transform: translateX(-50%) !important;
+        
+        /* THE FIX: We use black (#000000) here because the existing 
+           'filter: invert(1)' on the logo will flip it into a perfect white glow! */
+        background: #000000 !important;
+        border-radius: 50% !important;
+        box-shadow: 0 0 20px 20px #000000 !important;
+        z-index: 2500 !important;
+    }
 }
