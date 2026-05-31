@@ -832,21 +832,28 @@ body {
         transform: translateX(-50%) !important; 
     }
 
-    /* FIX 2: Restore Centering for the Shuffle Words */
+    /* FIX 2: Bulletproof Centering for the Shuffle Box */
     .dialogue-box { 
         display: flex !important; 
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        width: 100% !important;
-        padding: 0 !important; 
-        margin-top: 0 !important; 
-        min-height: auto !important;
+        
+        width: 100vw !important;
+        padding: 0 20px !important; 
+        margin: 0 auto !important; 
+        
+        /* Restores the vertical centering we lost */
+        min-height: 50vh !important; 
+        margin-top: 15vh !important; 
     }
+
     #keyword-shuffle {
         width: 100% !important;
         text-align: center !important;
+        /* Prevents massive words from wrapping onto two lines and breaking the center */
+        white-space: nowrap !important; 
     }
 
     /* Typography Adjustments */
