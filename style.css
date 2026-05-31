@@ -804,33 +804,44 @@ body {
 
 @media (max-width: 768px) {
     
-    /* 1. Contain the spill & Enable native swiping */
+    /* 1. SCROLL FIX: Break the flexbox layout to allow native vertical swiping */
     .fullscreen-page {
-        display: block; /* FIX: Kills the flexbox centering that was breaking the scroll */
-        overflow-y: auto; 
-        overflow-x: hidden;
-        padding-top: 110px; /* FIX: Creates a massive safe zone so content never hits the logo */
-        padding-bottom: 40px;
+        height: 100vh !important; 
+        height: 100dvh !important; /* Uses the new mobile-safe height property */
+        display: block !important; 
+        overflow-y: auto !important; 
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch; /* Forces smooth scrolling on iPhones */
+        padding: 100px 20px 40px 20px !important; /* Creates the permanent safe zone for the logo */
     }
 
-    /* 2. Shrink and tuck the logo */
-    .persistent-logo.watermark {
-        width: 55px;
-        top: 40px; /* FIX: Pushed down to completely clear the phone's top notch */
-    }
-
-    /* 3. Shrink the massive typography */
-    .massive-text { font-size: 2.2rem; }
-    .character-name { font-size: 2rem; }
-    .character-role { font-size: 0.9rem; letter-spacing: 2px; }
-    .project-title { font-size: 1.8rem; margin-top: 40px; }
-    
-    /* 4. Compact the Artist Statement & Menus */
+    /* Override the dangerous inline HTML flex styles that trap the menu */
     .dialogue-box { 
-        padding: 20px !important; 
-        margin: 0 auto !important; /* Re-centers the box horizontally */
+        display: block !important; 
+        padding: 0 !important; 
+        margin-top: 0 !important; 
         min-height: auto !important;
     }
+
+    /* 2. LOGO ALIGNMENT FIX */
+    /* The large starting logo */
+    .persistent-logo {
+        transform: translate(-50%, -50%) !important; /* Removes the -10px offset that made it off-center */
+        width: 100px !important;
+    }
+    /* The shrunken header logo */
+    .persistent-logo.watermark {
+        width: 50px !important;
+        top: 20px !important;
+        transform: translateX(-50%) !important; /* Perfectly centered horizontally */
+    }
+
+    /* 3. Typography & Statement Adjustments */
+    .massive-text { font-size: 2.2rem !important; }
+    .character-name { font-size: 2rem !important; }
+    .character-role { font-size: 0.9rem !important; letter-spacing: 2px; }
+    .project-title { font-size: 1.8rem !important; margin-top: 40px !important; }
+    
     .artist-statement { 
         font-size: 0.95rem !important; 
         line-height: 1.5 !important; 
@@ -838,7 +849,7 @@ body {
     }
     #next-button { margin-top: 20px !important; }
 
-    /* 5. Compact the Dashboard Menu (2 columns instead of 1 tall stack) */
+    /* 4. Compact the Dashboard Menu (2 Columns) */
     .prompt-text { margin-bottom: 20px; font-size: 0.8rem; }
     .options-menu.icon-grid { 
         grid-template-columns: 1fr 1fr; 
@@ -855,24 +866,21 @@ body {
     .social-footer { flex-direction: column; gap: 15px; margin-top: 30px; }
     .social-divider { display: none; }
 
-    /* 6. Fix the Layout Overlays (Single Column mode) */
+    /* 5. Fix the Project Overlays */
     .full-content-column,
     .right-content-column {
         width: 100vw;
         padding: 80px 5vw 100px 5vw; 
     }
-
-    /* Hide the floating desktop posters to save screen space */
     .hero-poster-anim { display: none !important; }
 
-    /* 7. Playable Media: Stack the image on top of the text */
+    /* Stack images and text */
     .game-entry {
         grid-template-columns: 1fr; 
         gap: 15px;
     }
     .game-screenshot { height: auto; aspect-ratio: 16/9; }
 
-    /* 8. Performance Page: Stack the photo collage */
     .project-collage {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
@@ -885,13 +893,13 @@ body {
         aspect-ratio: 16/9; 
     }
 
-    /* 9. Carousel Tweaks */
+    /* Carousel */
     .carousel-caption { padding: 10px; font-size: 0.75rem; }
     .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
     .left-btn { left: 10px; }
     .right-btn { right: 10px; }
 
-    /* 10. Close Button: Shrink to icon only */
+    /* Close Button */
     .close-page-btn {
         top: 20px;
         padding: 10px 12px;
