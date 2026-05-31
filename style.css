@@ -167,9 +167,9 @@ body {
 
 /* Shrunken header state (Triggered by JavaScript) */
 .persistent-logo.watermark {
-    top: 40px; 
-    left: 49.5%; 
-    transform: translateX(-50%); 
+    top: 9.5vh; /* Stays dynamically centered in the upper whitespace */
+    left: 49.5%; /* Kept exactly as you requested */
+    transform: translate(-50%, -50%); /* Pulls the logo up slightly to perfectly center on the 12vh line */
     width: 80px; 
     opacity: 1; 
     animation: none; 
