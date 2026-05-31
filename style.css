@@ -806,16 +806,17 @@ body {
     
     /* 1. Contain the spill & Enable native swiping */
     .fullscreen-page {
-        overflow-y: auto; /* Allows you to scroll if the screen is tiny */
+        display: block; /* FIX: Kills the flexbox centering that was breaking the scroll */
+        overflow-y: auto; 
         overflow-x: hidden;
-        padding-top: 80px; /* Creates a permanent safe zone for the logo */
+        padding-top: 110px; /* FIX: Creates a massive safe zone so content never hits the logo */
         padding-bottom: 40px;
     }
 
     /* 2. Shrink and tuck the logo */
     .persistent-logo.watermark {
         width: 55px;
-        top: 15px;
+        top: 40px; /* FIX: Pushed down to completely clear the phone's top notch */
     }
 
     /* 3. Shrink the massive typography */
@@ -824,10 +825,10 @@ body {
     .character-role { font-size: 0.9rem; letter-spacing: 2px; }
     .project-title { font-size: 1.8rem; margin-top: 40px; }
     
-    /* 4. Compact the Artist Statement */
+    /* 4. Compact the Artist Statement & Menus */
     .dialogue-box { 
         padding: 20px !important; 
-        margin-top: 0 !important; 
+        margin: 0 auto !important; /* Re-centers the box horizontally */
         min-height: auto !important;
     }
     .artist-statement { 
