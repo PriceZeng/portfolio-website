@@ -676,6 +676,9 @@
                     // Turn off the smooth scroll temporarily so the page snaps instantly behind the shutter
                     scrollContainer.style.transition = 'none';
                     scrollContainer.style.transform = 'translateY(-200vh)'; // Snaps to Page 3 Menu
+
+                    // NEW: Tell the logo to hide itself on the menu page
+                    document.getElementById('main-logo').classList.add('menu-hidden');
                     
                     // Phase 3: A tiny fraction of a second later, sweep the shutter up and away
                     setTimeout(() => {
