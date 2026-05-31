@@ -1018,8 +1018,8 @@ body {
         margin-top: 10vh !important;
     }
 
-    /* Position the Menu specifically */
-    .fullscreen-page:nth-of-type(3) .dialogue-box { margin-top: 10px !important; }
+    /* Position the Menu specifically - Pushed down further for narrow screens */
+    .fullscreen-page:nth-of-type(3) .dialogue-box { margin-top: 8vh !important; }
 
     /* Force a single column for the menu so buttons aren't crushed */
     .options-menu.icon-grid {
@@ -1030,7 +1030,7 @@ body {
 }
 
 /* ----------------------------------------------------
-   THE SCROLLING CLASH FIX (All screens under 1100px)
+   THE TOP BANNER FIX (All screens under 1100px)
 ---------------------------------------------------- */
 @media (max-width: 1100px) {
     
@@ -1039,11 +1039,24 @@ body {
         top: 20px !important;
         transform: translateX(-50%) !important;
         
-        /* THE FIX: We use black (#000000) here because the existing 
-           'filter: invert(1)' on the logo will flip it into a perfect white glow! */
-        background: #000000 !important;
-        border-radius: 50% !important;
-        box-shadow: 0 0 20px 20px #000000 !important;
+        /* Remove the old circular halo */
+        background: transparent !important;
+        box-shadow: none !important;
         z-index: 2500 !important;
+    }
+
+    /* Attach a full-width banner right behind the logo */
+    .persistent-logo.watermark::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 90px; /* Adjust this to make the banner taller or shorter */
+        
+        /* The invert(1) filter makes this black turn into pure white */
+        background: #000000;
+        box-shadow: 0 10px 20px #000000; /* Soft glowing bottom edge */
+        z-index: -1; /* Keeps the banner behind the actual logo image */
     }
 }
