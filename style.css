@@ -840,11 +840,10 @@ body {
         justify-content: center !important;
         text-align: center !important;
         
-        width: 100vw !important;
-        padding: 0 20px !important; 
+        width: 100% !important; /* FIX: Changed from 100vw to 100% so it respects parent padding */
+        padding: 0 !important;  /* FIX: Removed extra padding since the parent already handles it */
         margin: 0 auto !important; 
         
-        /* Restores the vertical centering we lost */
         min-height: 50vh !important; 
         margin-top: 15vh !important; 
     }
@@ -852,7 +851,6 @@ body {
     #keyword-shuffle {
         width: 100% !important;
         text-align: center !important;
-        /* Prevents massive words from wrapping onto two lines and breaking the center */
         white-space: nowrap !important; 
     }
 
