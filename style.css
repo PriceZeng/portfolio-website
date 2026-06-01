@@ -156,7 +156,7 @@ body {
     filter: invert(1);
     
     opacity: 0;
-    animation: fadeIn 1s ease-in-out 1.2s forwards; 
+    animation: fadeIn 0s ease-in-out 1.2s forwards; 
     
     transition: top 1.2s cubic-bezier(0.77, 0, 0.175, 1),
                 left 1.2s cubic-bezier(0.77, 0, 0.175, 1),
