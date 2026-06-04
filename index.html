@@ -773,6 +773,7 @@
         const projectDemo = document.getElementById('project-demo');
         const closeDemoBtn = document.getElementById('close-demo-btn');
 
+
         if(btnDemo && projectDemo) {
             btnDemo.addEventListener('click', () => {
                 projectDemo.classList.add('active');
@@ -782,7 +783,15 @@
             closeDemoBtn.addEventListener('click', () => {
                 projectDemo.classList.remove('stage-2');
                 setTimeout(() => { projectDemo.classList.remove('active'); }, 600);
+
+                const iframe = projectDemo.querySelector('iframe');
+                if (iframe) {
+                    const iframeSrc = iframe.src;
+                    iframe.src = iframeSrc; // Reloading the source instantly kills the audio/video
+                }
             });
+
+            
         }
 
         // ----------------------------------------------------
