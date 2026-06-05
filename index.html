@@ -570,9 +570,36 @@
         const scrollContainer = document.getElementById('master-scroll');
         const nextButton = document.getElementById('next-button');
         
-        // This calculates the duration of the initial loading screen
-        const totalDelay = 1500 + 2000; 
+        // ----------------------------------------------------
+        // 0. HARD RESET ON REFRESH (Fixes the animation glitch)
+        // ----------------------------------------------------
+        // Tell the browser to never remember the scroll position
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
 
+        // Force the main container back to the starting line instantly
+        if (scrollContainer) {
+            scrollContainer.style.transition = 'none'; 
+            scrollContainer.style.transform = 'translateY(0)';
+            
+            // Force the browser to register the reset before continuing
+            scrollContainer.offsetHeight; 
+            
+            // Turn the smooth transitions back on for the animations
+            scrollContainer.style.transition = 'transform 1.2s cubic-bezier(0.77, 0, 0.175, 1)';
+        }
+
+        // Strip away any leftover mobile or shrinking classes from the logo
+        const mainLogo = document.getElementById('main-logo');
+        if (mainLogo) {
+            mainLogo.classList.remove('watermark', 'menu-hidden');
+        }
+
+        // This calculates the duration of the initial loading screen
+        const totalDelay = 1500 + 2000;
+        
         // ----------------------------------------------------
         // 1. Cinematic Keyword Shuffle & Statement Reveal
         // ----------------------------------------------------
