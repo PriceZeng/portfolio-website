@@ -770,27 +770,28 @@
         // ----------------------------------------------------
         // 7. Carousel Logic (Used in Photography Overlay)
         // ----------------------------------------------------
-        const slides = document.querySelectorAll('.carousel-slide');
+        // FIX: Added the specific ID so it doesn't accidentally select the 3D slides
+        const photoSlides = document.querySelectorAll('#project-photography .carousel-slide');
         const nextPhotoBtn = document.getElementById('next-photo');
         const prevPhotoBtn = document.getElementById('prev-photo');
-        let currentSlide = 0;
+        let currentPhotoSlide = 0;
 
-        if(slides.length > 0) {
-            function showSlide(index) {
-                // Remove active class from all slides
-                slides.forEach(slide => slide.classList.remove('active'));
+        if(photoSlides.length > 0) {
+            function showPhotoSlide(index) {
+                // Remove active class from all photo slides
+                photoSlides.forEach(slide => slide.classList.remove('active'));
                 
                 // Handle looping around at the ends of the array
-                if (index >= slides.length) currentSlide = 0;
-                else if (index < 0) currentSlide = slides.length - 1;
-                else currentSlide = index;
+                if (index >= photoSlides.length) currentPhotoSlide = 0;
+                else if (index < 0) currentPhotoSlide = photoSlides.length - 1;
+                else currentPhotoSlide = index;
                 
                 // Add active class to the current slide
-                slides[currentSlide].classList.add('active');
+                photoSlides[currentPhotoSlide].classList.add('active');
             }
 
-            nextPhotoBtn.addEventListener('click', () => { showSlide(currentSlide + 1); });
-            prevPhotoBtn.addEventListener('click', () => { showSlide(currentSlide - 1); });
+            nextPhotoBtn.addEventListener('click', () => { showPhotoSlide(currentPhotoSlide + 1); });
+            prevPhotoBtn.addEventListener('click', () => { showPhotoSlide(currentPhotoSlide - 1); });
         }
 
         // ----------------------------------------------------
