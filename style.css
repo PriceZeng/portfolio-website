@@ -1085,3 +1085,76 @@ body {
         margin: 0 auto !important; 
     }
 }
+
+/* ========================================= */
+/* 11. PRINT TO PDF OPTIMIZATION             */
+/* ========================================= */
+
+@media print {
+    /* 1. Kill the web formatting and let the page flow like a normal document */
+    body, .scroll-wrapper, .fullscreen-page, .project-page, 
+    .right-content-column, .full-content-column, .dialogue-box {
+        position: static !important;
+        height: auto !important;
+        width: 100% !important;
+        overflow: visible !important;
+        display: block !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* 2. Force every major section to start on a brand new PDF page */
+    .fullscreen-page, .project-page {
+        break-before: page !important;
+        page-break-before: always !important;
+        padding: 1in !important; /* Standard 1-inch print margins */
+    }
+
+    /* Keep the first page at the very top */
+    .fullscreen-page:first-of-type {
+        break-before: auto !important;
+        page-break-before: auto !important;
+        padding-top: 3in !important; /* Push the title down to the middle of the first page */
+    }
+
+    /* 3. Hide web-only interactive junk that doesn't make sense in a PDF */
+    #loader, #camera-shutter, .close-page-btn, .carousel-btn, 
+    #next-button, .options-menu, #keyword-shuffle, #top-banner {
+        display: none !important;
+    }
+
+    /* 4. Force the Artist Statement to be permanently visible */
+    #statement-content {
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    /* 5. Handle the Carousels (Only print the first/active photo) */
+    .carousel-slide {
+        position: static !important;
+        opacity: 1 !important;
+        display: none !important;
+        page-break-inside: avoid !important;
+    }
+    .carousel-slide.active {
+        display: block !important;
+    }
+
+    /* 6. Clean up text constraints and prevent images from splitting across pages */
+    .text-content { max-width: 100% !important; }
+    
+    img, video, iframe, .game-entry, .collage-item {
+        max-width: 100% !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    /* 7. Strip background colors to save printer ink (optional, but looks cleaner) */
+    * {
+        background: transparent !important;
+        color: #000000 !important;
+    }
+}
