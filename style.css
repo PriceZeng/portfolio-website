@@ -108,6 +108,7 @@ body {
 .fullscreen-page {
     width: 100vw;
     height: 100vh;
+    height: 100dvh; /* matches the visible screen on phones (address bar aware) */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,6 +193,10 @@ body {
     line-height: 1.6;
 }
 
+.text-content p + p {
+    margin-top: 0.9em; /* breathing room between paragraphs */
+}
+
 #statement-container {
     max-width: 720px;
     margin: 0 auto; 
@@ -239,8 +244,67 @@ body {
 
 /* --- Action Button (Learn More) --- */
 #next-button {
+    visibility: hidden;
     opacity: 0;
-    animation: fadeIn 1s ease forwards 10.5s; 
+    transition: opacity 1s ease;
+    margin-top: 50px;
+}
+
+#next-button.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* --- Statement page (moved out of inline styles) --- */
+.statement-box {
+    margin-top: 12vh;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+}
+
+#keyword-shuffle {
+    margin: 0;
+    opacity: 1;
+}
+
+#keyword-shuffle.fade-out {
+    transition: opacity 0.8s ease;
+    opacity: 0;
+}
+
+#statement-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    max-width: 800px;
+}
+
+#statement-content.shown { display: block; }
+#statement-content.visible { opacity: 1; }
+
+.statement-para {
+    font-size: 1.45rem;
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+/* --- Menu page --- */
+.menu-box {
+    text-align: center;
+    border: none;
+}
+
+.menu-box .prompt-text {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    letter-spacing: 4px;
 }
 
 .action-button-centered {
@@ -266,6 +330,17 @@ body {
     color: #000000;
     transform: none; 
     box-shadow: none;
+}
+
+/* "Light" button style (selectable in the CMS) */
+.action-button-centered.light {
+    background: #ffffff;
+    color: #000000;
+}
+
+.action-button-centered.light:hover {
+    background: #000000;
+    color: #ffffff;
 }
 
 /* --- Dashboard Menu System --- */
@@ -312,15 +387,22 @@ body {
     transition: all 0.2s ease;
 }
 
-.game-option.grid-item:hover {
-    background: #000000;
-    color: #ffffff;
-    transform: translate(-4px, -4px);
-    box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+@media (hover: hover) {
+    .game-option.grid-item:hover {
+        background: #000000;
+        color: #ffffff;
+        transform: translate(-4px, -4px);
+        box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+    }
+
+    .game-option.grid-item:hover svg {
+        stroke: #ffffff;
+    }
 }
 
-.game-option.grid-item:hover svg {
-    stroke: #ffffff;
+.game-option.grid-item:active {
+    background: #000000;
+    color: #ffffff;
 }
 
 
@@ -383,6 +465,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     background-color: #ffffff;
     z-index: 2000; 
     opacity: 0;
@@ -430,7 +513,7 @@ body {
     top: 0;
     right: 0;
     width: 50vw; 
-    height: 100vh;
+    height: 100%;
     padding: 4vh 5vw 100px 4vw; 
     overflow-y: auto; 
     box-sizing: border-box;
@@ -456,7 +539,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw; 
-    height: 100vh;
+    height: 100%;
     padding: 3vh 10vw 100px 10vw; 
     overflow-y: auto; 
     box-sizing: border-box;
@@ -481,9 +564,50 @@ body {
 /* --- Inner Project Details --- */
 .project-title {
     font-size: 3rem; 
-    line-height: 1;
+    line-height: 1.05;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 0;
+}
+
+/* Long titles next to a poster shrink a little so they fit */
+.right-content-column .project-title {
+    font-size: clamp(2rem, 3.2vw, 3rem);
+}
+
+.project-buttons {
+    margin: 30px 0 10px 0;
+}
+
+.project-buttons .inline-button {
+    margin-top: 0;
+}
+
+.bottom-spacer {
+    height: 100px;
+}
+
+/* Closing statement under a gallery (Photography page) */
+.closing-text {
+    max-width: 720px;
+    margin: 60px auto 0 auto;
+}
+
+.closing-text p {
+    font-size: 1.15rem;
+    line-height: 1.85;
+    margin-bottom: 35px;
+    color: #333333;
+}
+
+.closing-text p:last-child {
+    margin-bottom: 0;
+}
+
+.closing-text .lead-word {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-right: 2px;
+    color: #000000;
 }
 
 .project-meta {
@@ -586,9 +710,17 @@ body {
     aspect-ratio: 16 / 9; 
 }
 
-.collage-left { grid-column: 1 / 2; grid-row: 1 / 3; }
-.collage-top-right { grid-column: 2 / 3; grid-row: 1 / 2; }
-.collage-bottom-right { grid-column: 2 / 3; grid-row: 2 / 3; }
+/* 3 images: tall one on the left, two stacked on the right */
+.project-collage.count-3 .collage-item:nth-child(1) { grid-column: 1 / 2; grid-row: 1 / 3; }
+.project-collage.count-3 .collage-item:nth-child(2) { grid-column: 2 / 3; grid-row: 1 / 2; }
+.project-collage.count-3 .collage-item:nth-child(3) { grid-column: 2 / 3; grid-row: 2 / 3; }
+
+/* 1, 2 or 4+ images: simple even grid */
+.project-collage.count-1 { grid-template-columns: 1fr; grid-template-rows: auto; }
+.project-collage.count-2 { grid-template-rows: auto; aspect-ratio: 16 / 6; }
+.project-collage.count-4 { grid-template-rows: none; grid-auto-rows: 1fr; aspect-ratio: auto; }
+.project-collage.count-4 .collage-item,
+.project-collage.count-1 .collage-item { aspect-ratio: 4 / 3; }
 
 .collage-item {
     position: relative;
@@ -629,13 +761,28 @@ body {
     pointer-events: none; 
 }
 
-.collage-item:hover img {
-    transform: scale(1.05); 
-    opacity: 0.4; 
+@media (hover: hover) {
+    .collage-item:hover img {
+        transform: scale(1.05); 
+        opacity: 0.4; 
+    }
+
+    .collage-item:hover .hover-caption {
+        opacity: 1; 
+    }
 }
 
-.collage-item:hover .hover-caption {
-    opacity: 1; 
+/* Touch screens can't hover, so show captions as a bar instead */
+@media (hover: none) {
+    .hover-caption {
+        opacity: 1;
+        top: auto;
+        bottom: 0;
+        height: auto;
+        padding: 8px 10px;
+        font-size: 0.75rem;
+        background: rgba(0, 0, 0, 0.6);
+    }
 }
 
 /* --- Video Embeds --- */
@@ -649,22 +796,24 @@ body {
     background: #000000;
 }
 
-.video-container iframe {
+.video-container iframe,
+.video-container video {
     width: 100%;
     height: 100%;
     display: block;
+    border: 0;
 }
 
 /* Make the Demo Reel video full-screen edge-to-edge */
-#project-demo .full-content-column {
+.layout-video .full-content-column {
     padding: 0; /* Removes the side padding so the video can touch the edges */
     background: #000000; /* Adds a cinematic black background behind the player */
 }
 
-#project-demo .video-container {
+.layout-video .video-container {
     max-width: none;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     margin: 0;
     border: none;       /* Removes the 2px black stroke */
     box-shadow: none;   /* Removes the drop shadow */
@@ -747,10 +896,30 @@ body {
     pointer-events: auto;
 }
 
-.carousel-slide img {
+.carousel-slide img,
+.carousel-slide video {
     width: 100%;
     height: 100%;
     object-fit: contain; 
+    display: block;
+}
+
+.carousel-counter {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.55);
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+}
+
+.carousel-container {
+    touch-action: pan-y; /* lets people swipe left/right between photos */
 }
 
 .carousel-caption {
@@ -792,9 +961,8 @@ body {
 .left-btn { left: 20px; }
 .right-btn { right: 20px; }
 
-/* Lock the scrollbar ONLY for specific modals */
-#project-playable .full-content-column,
-#project-demo .full-content-column {
+/* The full-screen video page never needs a scrollbar */
+.layout-video .full-content-column {
     overflow-y: hidden;
 }
 
@@ -899,16 +1067,11 @@ body {
     }
 
     /* Protect the Demo Reel so the video stays edge-to-edge */
-    #project-demo .full-content-column {
+    .layout-video .full-content-column {
         padding: 0 !important; 
     }
     .hero-poster-anim { display: none !important; }
 
-    /* FIX 3: Re-enable scrolling for Playable Media and Demo Reel */
-    #project-playable .full-content-column,
-    #project-demo .full-content-column {
-        overflow-y: auto !important; 
-    }
 
     /* Stack images and text */
     .game-entry {
@@ -923,7 +1086,8 @@ body {
         aspect-ratio: auto;
         gap: 10px;
     }
-    .collage-left, .collage-top-right, .collage-bottom-right {
+    .project-collage .collage-item,
+    .project-collage.count-3 .collage-item:nth-child(n) {
         grid-column: 1 / -1;
         grid-row: auto;
         aspect-ratio: 16/9; 
@@ -932,6 +1096,11 @@ body {
     /* Carousel */
     .carousel-caption { padding: 10px; font-size: 0.75rem; }
     .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+    .carousel-container { aspect-ratio: 4 / 3; max-height: 60vh; max-height: 60dvh; }
+    .closing-text { margin-top: 40px; }
+    .closing-text p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 18px; }
+    .closing-text .lead-word { font-size: 1.6rem; }
+    .statement-box { margin-top: 15vh; }
     .left-btn { left: 10px; }
     .right-btn { right: 10px; }
 
@@ -956,6 +1125,7 @@ body {
     /* SCROLL FIX: Force the layout to behave like mobile so it doesn't cut off the top */
     .fullscreen-page {
         height: 100vh !important;
+        height: 100dvh !important;
         display: block !important;
         overflow-y: auto !important;
         overflow-x: hidden !important;
@@ -994,6 +1164,12 @@ body {
     }
 
     .hero-poster-anim { display: none !important; }
+
+    /* Keep the name centred on the first screen (stops the logo overlapping it) */
+    #page-hero {
+        display: flex !important;
+        padding: 20px !important;
+    }
 
     /* Tighten the Dashboard Menu grid */
     .options-menu.icon-grid { gap: 15px; }
@@ -1054,7 +1230,8 @@ body {
         display: block !important; /* Force standard block stacking, not flex centering */
         padding: 80px 20px 40px 20px !important; /* FIX: Creates an absolute 80px safe zone at the top for the URL bar/notch */
         overflow-y: auto !important; /* Guarantees swiping works if content is tall */
-        height: 100vh !important; /* Full visible height */
+        height: 100vh !important;
+        height: 100dvh !important; /* Full visible height */
     }
 
     /* Step 2: Configure the child container to start at the safe y-position */
@@ -1156,5 +1333,16 @@ body {
     * {
         background: transparent !important;
         color: #000000 !important;
+    }
+}
+
+/* ========================================= */
+/* 12. REDUCED MOTION                        */
+/* ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
     }
 }

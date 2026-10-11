@@ -1,0 +1,50 @@
+# Automatically shrinks photos/videos you upload (e.g. through Pages CMS)
+# so the site stays fast on phones. Commits the smaller files back to main.
+name: Optimize media
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Images/**"
+      - "content/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: optimize-media
+  cancel-in-progress: false
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          npm install --prefix /tmp/media-tools sharp@0.33 --no-audit --no-fund
+
+      - name: Shrink oversized images and videos
+        env:
+          NODE_PATH: /tmp/media-tools/node_modules
+        run: node .github/scripts/optimize-media.cjs
+
+      - name: Commit smaller files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+            git add -A Images content
+            git commit -m "Optimize uploaded media"
+            git push
+          else
+            echo "Nothing to optimize."
+          fi
