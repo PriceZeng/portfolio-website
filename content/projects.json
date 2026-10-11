@@ -1,0 +1,138 @@
+{
+  "projects": [
+    {
+      "menuLabel": "Playable Media",
+      "icon": "controller",
+      "layout": "full",
+      "title": "Playable Media",
+      "meta": [
+        { "label": "Engine", "value": "Bitsy 3D & 2D" },
+        { "label": "Focus", "value": "Narrative Simulation & Atmosphere" }
+      ],
+      "games": [
+        {
+          "image": "/Images/this-land-screenshot.webp",
+          "title": "This Land Is Your Land (2026)",
+          "description": "An atmospheric 3D narrative game set against the bleak backdrop of the Great Depression, exploring themes of survival and critiquing American capitalism. Developed by importing an original 2D Bitsy game and adjusting tile settings to construct a three-dimensional world.",
+          "buttons": [
+            { "label": "Play Game >>", "url": "https://drive.google.com/file/d/1TvgC95Pcp5paoA4FzCV2V-HEtR2gMlzW/view?usp=sharing", "style": "dark" }
+          ]
+        },
+        {
+          "image": "/Images/winter-car-screenshot.webp",
+          "title": "My Winter Car / Remix (2025)",
+          "description": "A two-part project reimagining the Amistech game My Summer Car. It includes \"Cursed Car,\" a horror spin-off with a sentient vehicle, and \"Ice-cold Car,\" focusing on the physical difficulties of freezing weather. It explores how narratives can dominate the meaning of images by shifting from a life simulation satire to a completely different genre.",
+          "buttons": [
+            { "label": "Play \"Cursed Car\" >>", "url": "https://drive.google.com/file/d/1kO-5tgJHILP9aUxz5KOvfCFeay2nuOCT/view?usp=sharing", "style": "dark" },
+            { "label": "Play \"Ice-Cold Car\" >>", "url": "https://drive.google.com/file/d/12vpKJtg13vbkbtYt-1blUHnE4ZiCxvZ8/view?usp=sharing", "style": "dark" }
+          ]
+        }
+      ]
+    },
+    {
+      "menuLabel": "Photography Showcase",
+      "icon": "camera",
+      "layout": "full",
+      "title": "Captured Reality: A Multimedia Showcase",
+      "meta": [
+        { "label": "Year", "value": "2022-2026" },
+        { "label": "Medium", "value": "Digital Photography, Post-Production" },
+        { "label": "Role", "value": "Photographer, Editor" }
+      ],
+      "gallery": [
+        { "media": "/Images/sfmotor.webp", "caption": "Presidental motorade at SF APEC 2023, the first meet between US and China leaders since the trade war." },
+        { "media": "/Images/sfcrowd.webp", "caption": "Presidental motorade at SF APEC 2023, the first meet between US and China leaders since the trade war." },
+        { "media": "/Images/sfriotpolice.webp", "caption": "Presidental motorade during the first meet between US and China leaders since the trade war, San Franciso APEC 2023" },
+        { "media": "/Images/jetlegacy.webp", "caption": "USAF legacy showcase, 2023 So Cal Air Show at March Air Reserve Base" },
+        { "media": "/Images/thunderbird.webp", "caption": "USAF Thunderbird, 2023 So Cal Air Show at March Air Reserve Base" },
+        { "media": "/Images/bjparade.webp", "caption": "PLAAF Air formation, 2025 80th Anniversary of the Victory of the Chinese People's War of Resistance" },
+        { "media": "/Images/sdairport.webp", "caption": "San Diego International Airport overview" },
+        { "media": "/Images/scfire.webp", "caption": "Santa Cruz Fire Department on the job, 2025 Santa Cruz" },
+        { "media": "/Images/scprotest.webp", "caption": "2025 Santa Cruz" },
+        { "media": "/Images/nikefactory.webp", "caption": "Survey of Nike's Shoe Factory in China, 2025 China" }
+      ],
+      "closing": [
+        "As an artist focused on our shared reality, I devote much of my time to observing, documenting, and understanding the current state of the world. Through my camera lens, I capture events that mark important moments of our generation from the world of aviation, which has been critical to today's geopolitics, to the intense, raw realities of major political events and everyday working people.",
+        "The shared theme connecting these photos is the hidden detail in the \"faces\" of these overlooked events, capturing the everlasting tension between the rigid discipline of structural order and the unpredictable, raw nature of human emotion and conflict. This combination of capturing unfiltered images and bridging physical barriers allows me to share a distinct, comprehensive perspective of reality as it unfolds.",
+        "Over the years, I have built a community of thousands of followers who are intrigued by this perspective. If my interactive games are meant to recreate the atmosphere of the past, this multimedia work is my way of preserving the immediate present. By documenting these stark contrasts, I aim to provide a grounded and balanced reflection of the human experience exactly as it exists today."
+      ]
+    },
+    {
+      "menuLabel": "Interactive Performance",
+      "icon": "lightbulb",
+      "layout": "poster",
+      "title": "The Control of the Grid",
+      "poster": "/Images/grid-poster.webp",
+      "posterAlt": "Promotional poster for The Control of the Grid",
+      "meta": [
+        { "label": "Year", "value": "2026" },
+        { "label": "Medium", "value": "Live Interactive Game/Performance" },
+        { "label": "Role", "value": "Lighting Programmer, Documentation" }
+      ],
+      "intro": [
+        "The Control of the Grid is an interactive, experimental experience where both actors and audiences actively engage in establishing a scripted narrative. The play relies heavily on the precise execution of a carefully designed lighting sequence to guide and trigger the progression of events.",
+        "Throughout the show, audiences experience the thematic conflict between Chaos and Order through a series of games and performances. The restrictive enforcement of order represented by the \"grid\" is constantly challenged by the restless nature of chaos.",
+        "It was my first time actively participating in a live show as part of the creative crew, as well as my first time programming and operating all the lighting on set. Consequently, it was also the first time my own creative decisions and limitations directly influenced a play's dramatic tone."
+      ],
+      "collage": [
+        { "image": "/Images/lighting-station2.webp", "caption": "Backstage Team" },
+        { "image": "/Images/stage-lighting.webp", "caption": "Lighting Design Session" },
+        { "image": "/Images/lighting-station.webp", "caption": "Lighting Control Station" }
+      ],
+      "video": "https://www.youtube.com/embed/3VhYgUKr9yk"
+    },
+    {
+      "menuLabel": "Tabletop Systems",
+      "icon": "dice",
+      "layout": "poster",
+      "title": "\"A Lot Can Happen in 4 Years\": Roleplay Among The Powerful",
+      "poster": "/Images/tabletop.webp",
+      "posterAlt": "A Lot Can Happen in 4 Years Gameboard",
+      "meta": [
+        { "label": "Year", "value": "2025" },
+        { "label": "Medium", "value": "Tabletop Role-Playing Game" },
+        { "label": "Role", "value": "Co-Designer / Co-Creator / Trailer" }
+      ],
+      "intro": [
+        "*A Lot Can Happen in 4 Years* is a tabletop role-playing game designed for three or more players. Players take on the roles of Councilors who share equal power over a newly formed democratic fantasy nation. However, one player operates as a \"Secret Dictator,\" attempting to exploit the political power vacuum to seize absolute control before the council's four-year term expires.",
+        "The game features active and player-oriented world-building, requiring participants to physically draw and update a map as new lore is introduced. The core gameplay loop revolves around a rotating \"Messenger\" who delivers randomized news cards, some national and others targeted at specific councilors, forcing the group to debate decrees, manage citizen votes, navigate seasonal events, or even initiate a coup.",
+        "We intentionally designed this project without a Game Master to mechanically reflect the reality of high-level leadership: when players are only bound by a rulebook and their own morality, they are heavily incentivized to break the rules and prioritize their own efficiency over creating a compelling world for everyone.",
+        "The game serves as a direct critique of the passive democratic assumption that society can simply \"wait out\" an inadequate politician's term, demonstrating how manipulation exists and functions as a core part of the political systems of today."
+      ],
+      "buttons": [
+        { "label": "Rulebook >>", "url": "https://docs.google.com/document/d/1zSSeg9xm-tvhfcfO0eKz1DndZ6qlACzDQXf4LTNQkls/edit?usp=sharing", "style": "dark" },
+        { "label": "Sample Gameboard >>", "url": "https://miro.com/app/board/uXjVNvxQgX4=/?share_link_id=719411271315", "style": "light" }
+      ],
+      "video": "https://drive.google.com/file/d/1SSqsY0epunMPfJrSbPKO4HqfR5eol4V-/preview"
+    },
+    {
+      "menuLabel": "3D & 2D Designs",
+      "icon": "cube",
+      "layout": "full",
+      "title": "3D & 2D Designs",
+      "meta": [
+        { "label": "Software", "value": "Autodesk Maya, Blender" },
+        { "label": "Focus", "value": "Hierarchies, Weight Painting, Character Sculpting" }
+      ],
+      "gallery": [
+        { "media": "/Images/ball-animation.mp4", "poster": "/Images/animation-first-frame.webp", "caption": "3D animation sequence made in Maya." },
+        { "media": "/Images/rafale.webp", "caption": "Custom paint on Rafale fighter jet." },
+        { "media": "/Images/cover.webp", "caption": "Custom paint on Mirage 2000 fighter jet." },
+        { "media": "/Images/profile.webp", "caption": "Custom paint on J 10 fighter jet." },
+        { "media": "/Images/ui-design-1.webp", "caption": "Custom UI design for music player(1/2)." },
+        { "media": "/Images/ui-design-2.webp", "caption": "Custom UI design for music player(2/2)." },
+        { "media": "/Images/snowman-1.webp", "caption": "Custom Snowman made in Maya(1/3)." },
+        { "media": "/Images/snowman-2.webp", "caption": "Custom Snowman made in Maya(2/3)." },
+        { "media": "/Images/snowman-3.webp", "caption": "Custom Snowman made in Maya(3/3)." },
+        { "media": "/Images/run-animation.mp4", "caption": "Custom made 3D character with running animation in Blender." }
+      ]
+    },
+    {
+      "menuLabel": "Demo Reel",
+      "icon": "film",
+      "layout": "video",
+      "title": "Demo Reel",
+      "video": "https://drive.google.com/file/d/1sHfqgdSdcISLYv05BRAufBuz6KXQ4Vgr/preview"
+    }
+  ]
+}

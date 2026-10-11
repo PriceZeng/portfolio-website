@@ -1,0 +1,218 @@
+# Pages CMS configuration — https://pagescms.org
+# This file tells Pages CMS which parts of the site are editable
+# and what the editing form looks like. You don't need to change it
+# to add projects, photos or text.
+
+media:
+  input: Images
+  output: /Images
+  categories: [image, video]
+
+content:
+  # ---------------------------------------------------------------
+  - name: site
+    label: Home page & contact
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: name
+        label: Your name (big title on the first screen)
+        type: string
+        required: true
+      - name: role
+        label: Subtitle under your name
+        type: string
+      - name: keywords
+        label: Keyword shuffle animation
+        type: object
+        fields:
+          - name: slow
+            label: Words shown slowly first
+            type: string
+            list: true
+          - name: fast
+            label: Words that flash by quickly
+            type: string
+            list: true
+          - name: final
+            label: Word it lands on
+            type: string
+      - name: statement
+        label: Artist statement (one box per paragraph)
+        description: Tip — wrap words in *single stars* for italic or **double stars** for bold.
+        type: text
+        list: true
+      - name: learnMoreLabel
+        label: Button under the statement
+        type: string
+      - name: menuPrompt
+        label: Text above the project menu
+        type: string
+      - name: email
+        label: Contact email (copied when visitors click CONTACT)
+        type: string
+      - name: bilibili
+        label: Bilibili link (leave empty to hide)
+        type: string
+      - name: youtube
+        label: YouTube link (leave empty to hide)
+        type: string
+
+  # ---------------------------------------------------------------
+  - name: projects
+    label: Projects
+    type: file
+    path: content/projects.json
+    format: json
+    fields:
+      - name: projects
+        label: Projects (drag to reorder the menu)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{menuLabel}"
+        fields:
+          - name: menuLabel
+            label: Menu button label
+            type: string
+            required: true
+          - name: icon
+            label: Menu icon
+            type: select
+            options:
+              values:
+                - { name: controller, label: Game controller }
+                - { name: camera, label: Camera }
+                - { name: lightbulb, label: Light bulb }
+                - { name: dice, label: Dice / board game }
+                - { name: cube, label: 3D cube }
+                - { name: film, label: Film strip }
+                - { name: pen, label: Pen / design }
+                - { name: music, label: Music }
+                - { name: book, label: Book / writing }
+                - { name: globe, label: Globe / web }
+                - { name: code, label: Code }
+                - { name: star, label: Star }
+          - name: layout
+            label: Page layout
+            description: "Poster = image on the left, text on the right (desktop). Full width = everything in one column. Video only = just one big video."
+            type: select
+            options:
+              values:
+                - { name: poster, label: Poster + text }
+                - { name: full, label: Full width }
+                - { name: video, label: Video only }
+          - name: hidden
+            label: Hide this project from the site
+            type: boolean
+          - name: title
+            label: Page title
+            type: string
+          - name: poster
+            label: Poster image (only used by the "Poster + text" layout)
+            type: image
+          - name: posterAlt
+            label: Poster description (for screen readers)
+            type: string
+          - name: meta
+            label: Details line (Year, Medium, Role…)
+            type: object
+            list: true
+            fields:
+              - name: label
+                label: Label (e.g. Year)
+                type: string
+              - name: value
+                label: Value (e.g. 2026)
+                type: string
+          - name: intro
+            label: Description paragraphs
+            description: One box per paragraph. *italic* and **bold** work.
+            type: text
+            list: true
+          - name: buttons
+            label: Link buttons
+            type: object
+            list: true
+            fields:
+              - name: label
+                type: string
+              - name: url
+                label: Link
+                type: string
+              - name: style
+                type: select
+                options:
+                  values:
+                    - { name: dark, label: Black }
+                    - { name: light, label: White }
+          - name: games
+            label: Games / entries list (image + text + buttons)
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - name: image
+                label: Screenshot
+                type: image
+              - name: title
+                type: string
+              - name: description
+                type: text
+              - name: buttons
+                type: object
+                list: true
+                fields:
+                  - name: label
+                    type: string
+                  - name: url
+                    label: Link
+                    type: string
+                  - name: style
+                    type: select
+                    options:
+                      values:
+                        - { name: dark, label: Black }
+                        - { name: light, label: White }
+          - name: collage
+            label: Photo collage (3 images looks best)
+            type: object
+            list: true
+            fields:
+              - name: image
+                type: image
+              - name: caption
+                type: string
+          - name: gallery
+            label: Slideshow (photos or .mp4 videos — numbers are added automatically)
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{caption}"
+            fields:
+              - name: media
+                label: Photo or video
+                type: file
+                options:
+                  categories: [image, video]
+              - name: caption
+                type: text
+              - name: alt
+                label: Image description for screen readers (optional)
+                type: string
+              - name: poster
+                label: Video cover image (optional, videos only)
+                type: image
+          - name: closing
+            label: Closing paragraphs (shown under the slideshow)
+            type: text
+            list: true
+          - name: video
+            label: Video
+            description: Paste a YouTube, Bilibili, Vimeo or Google Drive share link.
+            type: string
